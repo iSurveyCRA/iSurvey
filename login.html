@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+		<title>Log In</title>
+		<script>
+			$('.message a').click(function(){
+   				$('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+			});
+		</script>
+		
+
+		<style type="text/css">
+			@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+			
+			* {
+				margin: 0px; 
+				padding: 0px; 
+				box-sizing: border-box;
+			}
+
+			body, html {
+				height: 100%;
+				font-family: Poppins-Regular, sans-serif;
+			}
+			
+			.limiter {
+				width: 100%;
+				margin: 0 auto;
+			}
+			
+
+			.login-page {
+				width: 100%;  
+				min-height: 100vh;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: center;
+				padding: 15px;
+				background: #f2f2f2;  
+			}
+			
+			.form {
+				width: 390px;
+				background: #fff;
+				border-radius: 10px;
+				overflow: hidden;
+				padding: 77px 55px 33px 55px;
+
+				box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+				-moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+				-webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+				-o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+				-ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+			}
+
+			.text-center{
+				padding-top: 115px;
+			}
+
+
+		/*------------------------------------------------------------------
+		[ Form ]*/
+
+
+			.login100-form {
+				width: 100%;
+			}
+
+			.login100-form-title {
+				display: block;
+				font-family: Poppins-Bold;
+				font-size: 50px;
+				color: #333333;
+				line-height: 1.2;
+				text-align: center;
+				padding-bottom: 25px;
+			}
+
+
+			.form input {
+			  font-family: "Roboto", sans-serif;
+			  outline: 0;
+			  background: #f2f2f2;
+				width: 100%;
+				border-radius: 10px;
+			  border: 0;
+			  margin: 0 0 15px;
+			  padding: 15px;
+			  box-sizing: border-box;
+			  font-size: 14px;
+			}
+
+			.input100 {
+				font-family: Poppins-Regular;
+				font-size: 15px;
+				color: #555555;
+				line-height: 1.2;
+
+				display: block;
+				width: 100%;
+				height: 45px;
+				background: transparent;
+				padding: 0 5px;
+			}
+			
+			button{
+    		font-family: Poppins-Medium;
+				text-transform: uppercase;
+				outline: 0;
+
+				border-radius: 25px;
+				
+    		background: #6a7dfe;
+  			background: -webkit-linear-gradient(left, #21d4fd, #b721ff);
+  			background: -o-linear-gradient(left, #21d4fd, #b721ff);
+  			background: -moz-linear-gradient(left, #21d4fd, #b721ff);
+  			background: linear-gradient(left, #21d4fd, #b721ff);
+    		cursor:pointer;
+    		transition:800ms ease all;
+    		position:relative;
+    		height:50px;
+    		width: 100%;
+				border: 0;
+				padding: 15px;
+				color: #ffffff; /*button에 로그인 글씨 색 */
+				font-size: 15px;
+			}
+
+  		button:hover{
+    		background:#fff;
+    		color:#6a7dfe;
+			}
+			
+  		button:before{
+    		content:'';
+    		position:absolute;
+     		top:0;
+    		right:0;
+    		width:0;
+    		height:2px;
+    		background: #6a7dfe;
+    		transition:400ms ;
+			}
+			
+  		button:after{
+    		content:'';
+    		position:absolute;
+    		top:0;
+    		right:0;
+				height:2px;
+				width:0;
+				background: #6a7dfe;
+				transition:400ms ease all;  
+				right:inherit;
+				top:inherit;
+				left:0;
+				bottom:0;
+			}
+  
+			button:hover:before{
+				width:100%;
+				transition:800ms ease all;
+			}
+			button:hover:after{
+				width:100%;
+				transition:800ms ease all;
+			}
+		
+			
+
+
+			.form .txt1{
+			  font-family: Poppins-Regular;
+				font-size: 13px;
+				color: #666666;
+				line-height: 1.5;
+				text-align: center;
+			}
+			.form .txt2 {
+			  font-family: Poppins-Regular;
+				font-size: 13px;
+				color: #333333;
+				line-height: 1.5;
+				text-align: center;
+			}
+
+
+			.container {
+			  position: relative;
+			  z-index: 1;
+			  max-width: 300px;
+			  margin: 0 auto;
+			}
+			.container:before, .container:after {
+			  content: "";
+			  display: block;
+			  clear: both;
+			}
+			.container .info {
+			  margin: 50px auto;
+			  text-align: center;
+			}
+			.container .info h1 {
+			  margin: 0 0 15px;
+			  padding: 0;
+			  font-size: 36px;
+			  font-weight: 300;
+			  color: #1a1a1a;
+			}
+			.container .info span {
+			  color: #4d4d4d;
+			  font-size: 12px;
+			}
+			.container .info span a {
+			  color: #000000;
+			  text-decoration: none;
+			}
+			.container .info span .fa {
+			  color: #EF3B3A;
+			}
+			body {
+				
+				
+				background: #adadad; 
+				
+			
+			  font-family: Poppins-Regular, sans-serif;
+			  -webkit-font-smoothing: antialiased;
+			  -moz-osx-font-smoothing: grayscale;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<div class="limiter">
+			<div class="login-page">
+				<div class="form">
+						<span class="login100-form-title">
+								<b>i-Survey</b>
+							
+						
+								<p><i class="zmdi zmdi-chart zmdi-hc-1x"></i></p>
+						</span>
+						
+						<form action="/login" method="post" class="login-form">
+							<input class="input100" type="text" name="username" placeholder="hisnet ID"/>
+							<input class="input100" type="password" name="password" placeholder="hisnet Password"/>
+							<!--<input id="button" type="submit" value="Login"> <-->
+							<button><b>LOGIN</b></button>
+
+							<div class="text-center">
+									<span class="txt1">
+										Don’t have an account?
+									</span>
+			
+									<a class="txt2" href="registerpage">
+										Create an account</a>
+								</div>
+							
+						</form>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
