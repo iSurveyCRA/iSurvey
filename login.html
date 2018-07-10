@@ -22,6 +22,7 @@
 			body, html {
 				height: 100%;
 				font-family: Poppins-Regular, sans-serif;
+				background: #adadad;
 			}
 			
 			.limiter {
@@ -68,11 +69,11 @@
 		[ Form ]*/
 
 
-			.login100-form {
+			.login-form {
 				width: 100%;
 			}
 
-			.login100-form-title {
+			.login-form-title {
 				display: block;
 				font-family: Poppins-Bold;
 				font-size: 50px;
@@ -96,7 +97,7 @@
 			  font-size: 14px;
 			}
 
-			.input100 {
+			.input {
 				font-family: Poppins-Regular;
 				font-size: 15px;
 				color: #555555;
@@ -113,46 +114,44 @@
     		font-family: Poppins-Medium;
 				text-transform: uppercase;
 				outline: 0;
-
 				border-radius: 25px;
-				
-    		background: #6a7dfe;
-  			background: -webkit-linear-gradient(left, #21d4fd, #b721ff);
-  			background: -o-linear-gradient(left, #21d4fd, #b721ff);
-  			background: -moz-linear-gradient(left, #21d4fd, #b721ff);
-  			background: linear-gradient(left, #21d4fd, #b721ff);
-    		cursor:pointer;
-    		transition:800ms ease all;
-    		position:relative;
-    		height:50px;
-    		width: 100%;
+				background: #6a7dfe;
+				background: -webkit-linear-gradient(left, #21d4fd, #b721ff);
+				background: -o-linear-gradient(left, #21d4fd, #b721ff);
+				background: -moz-linear-gradient(left, #21d4fd, #b721ff);
+				background: linear-gradient(left, #21d4fd, #b721ff);
+				cursor:pointer;
+				transition:800ms ease all;
+				position:relative;
+				height:50px;
+				width: 100%;
 				border: 0;
 				padding: 15px;
 				color: #ffffff; /*button에 로그인 글씨 색 */
 				font-size: 15px;
 			}
 
-  		button:hover{
-    		background:#fff;
-    		color:#6a7dfe;
-			}
-			
-  		button:before{
-    		content:'';
-    		position:absolute;
-     		top:0;
-    		right:0;
-    		width:0;
-    		height:2px;
-    		background: #6a7dfe;
-    		transition:400ms ;
-			}
-			
-  		button:after{
-    		content:'';
-    		position:absolute;
-    		top:0;
-    		right:0;
+			button:hover{
+				background:#fff;
+				color:#6a7dfe;
+				}
+				
+			button:before{
+				content:'';
+				position:absolute;
+				top:0;
+				right:0;
+				width:0;
+				height:2px;
+				background: #6a7dfe;
+				transition:400ms ;
+				}
+				
+			button:after{
+				content:'';
+				position:absolute;
+				top:0;
+				right:0;
 				height:2px;
 				width:0;
 				background: #6a7dfe;
@@ -172,9 +171,6 @@
 				transition:800ms ease all;
 			}
 		
-			
-
-
 			.form .message {
 			  margin: 15px 0 0;
 			  color: #666666;
@@ -186,51 +182,6 @@
 			  text-decoration: none;
 			  text-align: center;
 			}
-
-
-			.container {
-			  position: relative;
-			  z-index: 1;
-			  max-width: 300px;
-			  margin: 0 auto;
-			}
-			.container:before, .container:after {
-			  content: "";
-			  display: block;
-			  clear: both;
-			}
-			.container .info {
-			  margin: 50px auto;
-			  text-align: center;
-			}
-			.container .info h1 {
-			  margin: 0 0 15px;
-			  padding: 0;
-			  font-size: 36px;
-			  font-weight: 300;
-			  color: #1a1a1a;
-			}
-			.container .info span {
-			  color: #4d4d4d;
-			  font-size: 12px;
-			}
-			.container .info span a {
-			  color: #000000;
-			  text-decoration: none;
-			}
-			.container .info span .fa {
-			  color: #EF3B3A;
-			}
-			body {
-				
-				
-				background: #adadad; 
-				
-			
-			  font-family: Poppins-Regular, sans-serif;
-			  -webkit-font-smoothing: antialiased;
-			  -moz-osx-font-smoothing: grayscale;
-			}
 		</style>
 	</head>
 		
@@ -238,25 +189,19 @@
 		<div class="limiter">
 			<div class="login-page">
 				<div class="form">
-						<span class="login100-form-title">
+						<span class="login-form-title">
 								<b>i-Survey</b>
-							
-						
 								<p><i class="zmdi zmdi-chart zmdi-hc-1x"></i></p>
 						</span>
-						
 						<form action="/login" method="post" class="login-form">
-							<input class="input100" type="text" name="username" placeholder="hisnet ID"/>
-							<input class="input100" type="password" name="password" placeholder="hisnet Password"/>
-							<!--<input id="button" type="submit" value="Login"> <-->
-							<button><b>LOGIN</b></button>
+						<input class="input" type="text" name="username" placeholder="hisnet ID"/>
+						<input class="input" type="password" name="password" placeholder="hisnet Password"/>
+						<button><b>LOGIN</b></button>
 
-							<div class="text-center">
-								<p class="message">Not registered? <a href="registerpage">Create an account</a></p>
-							</div>
-							
+						<div class="text-center">
+							<p class="message">Not registered? <a href="registerpage">Create an account</a></p>
+						</div>
 						</form>
-					
 				</div>
 			</div>
 		</div>
