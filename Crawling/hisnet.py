@@ -7,7 +7,7 @@ driver = webdriver.Chrome('./chromedriver')
 driver.get('https://hisnet.handong.edu/login/login.php')
 
 driver.find_element_by_name('id').send_keys('jw971003')
-driver.find_element_by_name('password').send_keys('jw04101697!')
+driver.find_element_by_name('password').send_keys('************')
 driver.find_element_by_xpath('//*[@id="loginBoxBg"]/table[2]/tbody/tr/td[5]/form/table/tbody/tr[3]/td/table/tbody/tr/td[2]/input').click()
 driver.implicitly_wait(3)
 driver.get("http://hisnet.handong.edu/for_student/haksa_info/01.php")
