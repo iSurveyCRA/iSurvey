@@ -18,22 +18,6 @@ var insertDocuments = function(db, query, callback){
 	});
 }
 
-var findDocumentsQuery = function(db, id, ps, callback){
-	var collection = db.collection('accounts');
-
-	collection.findOne(id, function(err, account){
-		if (err) throw err; 
-		
-		if (account == null) {
-			callback('Such account does not exist!');
-		} else if (ps == account.password){
-			callback('Log In Success!');
-		} else {
-			callback('Worng Password!');
-		}
-	});
-}
-
 var checkDocumentsQuery = function(db, query, callback){
 	var collection = db.collection('accounts');
 
@@ -68,9 +52,9 @@ function readHtml(result, res){
 app.post('/login', function(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
-	
+
 	var spawn = require('child_process').spawn
-	var process = spawn('python', ["./login2.py", username, password]);
+	var process = spawn('python', ["./seleniumLogin.py", username, password]);
 
 	process.stdout.on('data', function(data){
 		userData = JSON.parse(data);

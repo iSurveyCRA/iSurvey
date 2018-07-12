@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import re
 import sys
 import json
@@ -6,8 +7,13 @@ import json
 try:
 
     base_url = 'http://hisnet.handong.edu/haksa/hakjuk/HHAK110M.php'
+    
+    options = Options()
+    options.set_headless(headless=True)
+    chrome_prefs = {"profile.managed_default_content_settings.images":2}
+    options.add_experimental_option("prefs",chrome_prefs)
 
-    driver = webdriver.Chrome('chromedriver')
+    driver = webdriver.Chrome(chrome_options=options, executable_path=r'C:\chromedriver.exe')
     driver.get("https://hisnet.handong.edu/login/login.php")
 
     driver.find_element_by_name('id').send_keys(str(sys.argv[1]))
