@@ -54,7 +54,7 @@ app.post('/login', function(req, res){
 	var password = req.body.password;
 
 	var spawn = require('child_process').spawn
-	var process = spawn('python', ["./seleniumLogin.py", username, password]);
+	var process = spawn('python3.5', ["./seleniumLogin.py", username, password]);
 
 	process.stdout.on('data', function(data){
 		userData = JSON.parse(data);
