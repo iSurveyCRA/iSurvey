@@ -46,7 +46,7 @@ try:
 
     
     userInfo = {
-        "username" : 'minglee68',
+        "username" : str(sys.argv[1]),
         "name" : user_name,
         "grade" : user_grade,
         "student_id" : user_stu_id,
