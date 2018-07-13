@@ -26,3 +26,5 @@ print(stuName)
 print(stuNum)
 print(faculty)
 print(phoneNum)
+
+  

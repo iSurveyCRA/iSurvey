@@ -23,24 +23,23 @@ try:
 
     driver.get(base_url)
 
-    name = driver.find_element_by_xpath('//form[@name="form1"]/table/tbody/tr[1]/td[2]')
+    name = driver.find_element_by_xpath('//form[@name="form1"]/table/tbody/tr[1]/td[2]').text
     grade_stu_id = driver.find_element_by_xpath('//form[@name="form1"]/table/tbody/tr[2]/td[2]')
-    department = driver.find_element_by_xpath('//form[@name="form1"]/table/tbody/tr[6]/td[2]')
+    department = driver.find_element_by_xpath('//form[@name="form1"]/table/tbody/tr[6]/td[2]').text
 
     pattern_grade = re.compile(r"^[0-9]")
     pattern_stu_id = re.compile(r"[0-9]{8}$")
 
-    user_name = name.text
     user_grade = pattern_grade.search(grade_stu_id.text).group()
     user_stu_id = pattern_stu_id.search(grade_stu_id.text).group()
-    user_department = department.text
+
 
     userInfo = {
         "username" : str(sys.argv[1]),
-        "name" : user_name,
+        "name" : name,#user_name,
         "grade" : user_grade,
         "student_id" : user_stu_id,
-        "user_department" : user_department
+        "user_department" : department#user_department
     }
 
     json_data = json.dumps(userInfo)
