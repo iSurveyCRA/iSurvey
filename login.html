@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+		<title>Log In</title>
+		<script>
+			$('.message a').click(function(){
+   				$('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+			});
+		</script>
+		
+
+		<style type="text/css">
+			@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+			
+			* {
+				margin: 0px; 
+				padding: 0px; 
+				box-sizing: border-box;
+			}
+			body, html {
+				height: 100%;
+				font-family: Poppins-Regular, sans-serif;
+				background: #adadad;
+			}
+			
+			.limiter {
+				width: 100%;
+				margin: 0 auto;
+			}
+			
+			.login-page {
+				width: 100%;  
+				min-height: 100vh;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: center;
+				padding: 15px;
+				background: #f2f2f2;  
+			}
+			
+			.form {
+				width: 390px;
+				background: #fff;
+				border-radius: 10px;
+				overflow: hidden;
+				padding: 77px 55px 33px 55px;
+				box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+				-moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+				-webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+				-o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+				-ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+			}
+			.text-center{
+				padding-top: 115px;
+			}
+		/*------------------------------------------------------------------
+		[ Form ]*/
+			.login-form {
+				width: 100%;
+			}
+			.login-form-title {
+				display: block;
+				font-family: Poppins-Bold;
+				font-size: 50px;
+				color: #333333;
+				line-height: 1.2;
+				text-align: center;
+				padding-bottom: 25px;
+			}
+			.form input {
+			  font-family: "Roboto", sans-serif;
+			  outline: 0;
+			  background: #f2f2f2;
+				width: 100%;
+				border-radius: 10px;
+			  border: 0;
+			  margin: 0 0 15px;
+			  padding: 15px;
+			  box-sizing: border-box;
+			  font-size: 14px;
+			}
+			.input {
+				font-family: Poppins-Regular;
+				font-size: 15px;
+				color: #555555;
+				line-height: 1.2;
+				display: block;
+				width: 100%;
+				height: 45px;
+				background: transparent;
+				padding: 0 5px;
+			}
+			
+			button{
+    		font-family: Poppins-Medium;
+				text-transform: uppercase;
+				outline: 0;
+				border-radius: 25px;
+				background: #6a7dfe;
+				background: -webkit-linear-gradient(left, #21d4fd, #b721ff);
+				background: -o-linvear-gradient(left, #21d4fd, #b721ff);
+				background: -moz-linear-gradient(left, #21d4fd, #b721ff);
+				background: linear-gradient(left, #21d4fd, #b721ff);
+				cursor:pointer;
+				transition:800ms ease all;
+				position:relative;
+				height:50px;
+				width: 100%;
+				border: 0;
+				padding: 15px;
+				color: #ffffff; /*button에 로그인 글씨 색 */
+				font-size: 15px;
+			}
+			button:hover{
+				background:#fff;
+				color:#6a7dfe;
+				}
+				
+			button:before{
+				content:'';
+				position:absolute;
+				top:0;
+				right:23px;
+				width:0;
+				height:2px;
+				background: #6a7dfe;
+				transition:400ms ;
+				
+				
+				}
+				
+			button:after{
+				content:'';
+				position:absolute;
+				top:0;
+				right:0;
+				height:2px;
+				width:0;
+				background: #6a7dfe;
+				transition:400ms ease all;  
+				right:inherit;
+				top:inherit;
+				left:23px;
+				bottom:0;
+			}
+  
+			button:hover:before{
+				width:83%;
+				transition:800ms ease all;
+			}
+			button:hover:after{
+				width:83%;
+				transition:800ms ease all;
+			}
+		
+			.form .message {
+			  margin: 15px 0 0;
+			  color: #666666;
+			  font-size: 15px;
+			  text-align: center;
+			}
+			.form .message a {
+			  color: #333333;
+			  text-decoration: none;
+			  text-align: center;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<div class="limiter">
+			<div class="login-page">
+				<div class="form">
+						<span class="login-form-title">
+								<b>i-Survey</b>
+								<p><i class="zmdi zmdi-chart zmdi-hc-1x"></i></p>
+						</span>
+						<form action="/login" method="post" class="login-form">
+						<input class="input" type="text" name="username" placeholder="hisnet ID"/>
+						<input class="input" type="password" name="password" placeholder="hisnet Password"/>
+						<button><b>LOGIN</b></button>
+
+						<div class="text-center">
+							<p class="message">Not registered? <a href="registerpage">Create an account</a></p>
+						</div>
+						</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
