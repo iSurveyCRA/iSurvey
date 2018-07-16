@@ -2,6 +2,8 @@
 <html>
 	<head>
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Log In</title>
 		<script>
 			$('.message a').click(function(){
@@ -110,8 +112,9 @@
 				padding: 0 5px;
 			}
 			
-			button{
-    		font-family: Poppins-Medium;
+			.dropbtn{
+				display: block;
+    			font-family: Poppins-Medium;
 				text-transform: uppercase;
 				outline: 0;
 				border-radius: 25px;
@@ -131,12 +134,12 @@
 				font-size: 15px;
 			}
 
-			button:hover{
+			.dropbtn:hover{
 				background:#fff;
 				color:#6a7dfe;
 				}
 				
-			button:before{
+			.dropbtn:before{
 				content:'';
 				position:absolute;
 				top:0;
@@ -149,7 +152,7 @@
 				
 				}
 				
-			button:after{
+			.dropbtn:after{
 				content:'';
 				position:absolute;
 				top:0;
@@ -164,14 +167,39 @@
 				bottom:0;
 			}
   
-			button:hover:before{
+			.dropbtn:hover:before{
 				width:83%;
 				transition:800ms ease all;
 			}
-			button:hover:after{
+			.dropbtn:hover:after{
 				width:83%;
 				transition:800ms ease all;
 			}
+
+			.buttonload{
+				display: none;
+    			font-family: Poppins-Medium;
+				text-transform: uppercase;
+				outline: 0;
+				border-radius: 25px;
+				background: #6a7dfe;
+				background: -webkit-linear-gradient(left, #21d4fd, #b721ff);
+				background: -o-linvear-gradient(left, #21d4fd, #b721ff);
+				background: -moz-linear-gradient(left, #21d4fd, #b721ff);
+				background: linear-gradient(left, #21d4fd, #b721ff);
+				cursor:pointer;
+				transition:800ms ease all;
+				position:relative;
+				height:50px;
+				width: 100%;
+				border: 0;
+				padding: 15px;
+				color: #ffffff; /*button에 로그인 글씨 색 */
+				font-size: 15px;
+			}
+			
+			.show {display:block;}
+			.showa {display:none;}
 		
 			.form .message {
 			  margin: 15px 0 0;
@@ -198,7 +226,19 @@
 						<form action="/login" method="post" class="login-form">
 						<input class="input" type="text" name="username" placeholder="hisnet ID"/>
 						<input class="input" type="password" name="password" placeholder="hisnet Password"/>
-						<button><b>LOGIN</b></button>
+						<button id="myBtn" class="dropbtn"><b>LOGIN</b></button>
+						<button id="myDropdown" class="buttonload">
+								<i class="fa fa-spinner fa-spin"></i> Loading
+							  </button>
+							  <script>
+								
+									document.getElementById("myBtn").onclick = function() {myFunction()};
+									
+									function myFunction() {
+										document.getElementById("myDropdown").classList.toggle("show");
+										document.getElementById("myBtn").classList.toggle("showa");
+									}
+									</script>
 
 						<div class="text-center">
 							<p class="message">Not registered? <a href="registerpage">Create an account</a></p>
