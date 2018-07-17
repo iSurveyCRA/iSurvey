@@ -62,7 +62,16 @@ app.post('/login', function(req, res){
 	// take inputs given by user
 	var username = req.body.username;
 	var password = req.body.password;
+	
+	var account = { "username" : username, "password" : password};
 
+
+	MongoClient.connect(url,function(err,db){
+		assert.equal(null, err);
+		console.log("connected successfully to server");
+		
+	checkDocumentsQuery(db,account,function(result){
+		if (result == false){
 	// make child_process and run 'seleniumLogin.py' with 'python3.5' 
 	// and giving username and password as argument
 	var spawn = require('child_process').spawn
@@ -74,6 +83,14 @@ app.post('/login', function(req, res){
 		// parse 'data' variable and assign it into 'userData' variable
 		userData = JSON.parse(data);
 		
+		userInfo = {
+			"username" : username,
+		"password" : password,
+			"name" : userData.name,
+			"grade" : userData.grade,
+			"student_id" : userData.student_id,
+			"user_department" : userData.user_department
+		}
 		// variable to check if userData is error JSON
 		error = {'error':'true'}   
 
@@ -109,6 +126,14 @@ app.post('/login', function(req, res){
 			readHtml('Login Failed!', res);
 		}
 	});
+		}
+			
+		else
+			readHtml("login sucefulio",res);
+
+
+	})
+	})
 });
 
 
