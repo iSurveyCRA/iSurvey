@@ -21,10 +21,9 @@ var insertDocuments = function(db, query, callback){
 	});
 }
 
-// Function to search for Data
+// Function to search for Data (For checking account information in DB)
 var checkDocumentsQuery = function(db, query, callback){
 	var collection = db.collection('accounts');
-
 	collection.findOne(query, function(err, account){
 		if (err) throw err;
 
@@ -34,6 +33,22 @@ var checkDocumentsQuery = function(db, query, callback){
 			callback(true);
 		}
 	});
+}
+
+// Function to search for Data (For checking correct Login)
+var findDocumentsQuery = function(db, id, pw, callback){
+  var collection = db.collection('accounts');
+  collection.findOne(id, function(err,account){
+    if (err) throw err;
+
+    if (account == null){
+      callback('Such account does not exist!');
+    } else if (pw == account.password){
+      callback('Login Success!');
+    }else{
+      callback('Wrong Password!');
+		}
+  });
 }
 
 // middleware to get http requests in POST method and JSON type
@@ -58,73 +73,81 @@ function readHtml(result, res){
 }
 
 // executed when user press login button
-app.post('/login', function(req, res){
-	// take inputs given by user
+app.post('/login', function(req,res){
 	var username = req.body.username;
 	var password = req.body.password;
 	
 	var account = { "username" : username, "password" : password};
 
+	var idQuery = {};
+	idQuery['username'] = username
 
-	MongoClient.connect(url,function(err,db){
-		assert.equal(null, err);
-		console.log("connected successfully to server");
-		
-	checkDocumentsQuery(db,account,function(result){
-		if (result == false){
-	// make child_process and run 'seleniumLogin.py' with 'python3.5' 
-	// and giving username and password as argument
-	var spawn = require('child_process').spawn
-	var process = spawn('python3.5', ["./seleniumLogin.py", username, password]);
+	MongoClient.connect(url, function(err, db){
+		assert.equal(err, null);
+		console.log("Successfully connected to userInfo DB");
 
-	// take standard out given by 'seleniumLogin.py' as 'data' variable in JSON type
-	process.stdout.on('data', function(data){
+		checkDocumentsQuery(db, idQuery, function(result){
+			//If the DB has id information, Try Login
+			if(result == true){
+				findDocumentsQuery(db, idQuery, password, function(result){
+					readHtml(result,res);
+					db.close();
+				});
 
-		// parse 'data' variable and assign it into 'userData' variable
-		userData = JSON.parse(data);
-		
-		userInfo = {
-			"username" : username,
-		"password" : password,
-			"name" : userData.name,
-			"grade" : userData.grade,
-			"student_id" : userData.student_id,
-			"user_department" : userData.user_department
-		}
-		// variable to check if userData is error JSON
-		error = {'error':'true'}   
+		//If the DB has not id information, Start Crawling
+			}else{
 
-		// if userData is error JSON or does not have student number in it,
-		// print out result.html with 'Login Failed!'
-		// else connect to MongoDB and first check if there is same data in it,
-		// print out result.html with 'Login Success!' if there is, and if not then
-		// insert Data as Document into MongoDB and print out result.html with
-		// 'Register and Login Success!'
-		// at last Close MongoDB
-		if(userData == error){
-			readHtml('Login Failed!', res);
-		} else if(userData['student_id']){
-			MongoClient.connect(url, function(err, db){
-				assert.equal(err, null);
-				console.log("Successfully connected to userInfo DB");
-				checkDocumentsQuery(db, userData, function(result){
-					if (result == false){
-						insertDocuments(db, userData, function(){
-							readHtml('Register and Login Success!', res);
-							db.close();
-						});
+				// make child_process and run 'seleniumLogin.py' with 'python3.5'
+				// and giving username and password as argument
+				var spawn = require('child_process').spawn
+				var process = spawn('python3.5', ["./seleniumLogin.py", username, password]);
+
+				// take standard out given by 'seleniumLogin.py' as 'data' variable in JSON type
+				process.stdout.on('data', function(data){
+
+					// parse 'data' variable and assign it into 'userData' variable
+					userData = JSON.parse(data);
+
+					//sorting 'userData'
+					      userInfo = {
+								"username" : username,
+								"password" : password,
+								"name" : userData.name,
+								"grade" : userData.grade,
+								"student_id" : userData.student_id,
+								"user_department" : userData.user_department
+								}
+
+					// variable to check if userData is error JSON
+					error = {'error':'true'}
+
+					// if userData is error JSON or does not have student number in it,
+					// print out result.html with 'Login Failed!'
+					// else connect to MongoDB and first check if there is same data in it,
+					// print out result.html with 'Login Success!' if there is, and if not then
+					// insert Data as Document into MongoDB and print out result.html with
+					// 'Register and Login Success!'
+					// at last Close MongoDB
+					if(userInfo == error){
+						readHtml('Login Failed!', res);
+					} else if(userInfo['student_id']){ //crawling잘 되었으면
+							insertDocuments(db, userInfo, function(){
+								readHtml('Register and Login Success!', res);
+								db.close();
+							});
+>>>>>>> master
 					} else {
-						readHtml('Login Success!', res);
-						db.close();
+					 		readHtml('Hisnet Login Failed!!!', res);
+					 		db.close();
 					}
 
-
 				});
-				
-			});
-		} else {
-			readHtml('Login Failed!', res);
-		}
+
+			}
+
+		});
+
+
 	});
 		}
 			
@@ -137,7 +160,7 @@ app.post('/login', function(req, res){
 });
 
 
-// listen to port number '3004' and host address '0.0.0.0'
-app.listen(3004, ()=>{
+// listen to port number '300N' and host address '0.0.0.0'
+app.listen(3002, ()=>{
 	console.log("server started");
 });
