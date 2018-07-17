@@ -5,6 +5,9 @@ var path = require('path');
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var fs = require('fs');
+var crypto =require('crypto');
+var key = 'd6F3Efeq';
+
 
 // url to access MongoDB
 var url = 'mongodb://localhost:27017/userInfo';
@@ -12,7 +15,9 @@ var url = 'mongodb://localhost:27017/userInfo';
 // Function to Insert Data
 var insertDocuments = function(db, query, callback){
 	var collection = db.collection('accounts');
+	query.password = encrypt(key,query.password); //encrypt password before inserting into dbgit 
 	collection.insertOne(query, function(err, result){
+		
 		assert.equal(err, null);
 		assert.equal(1, result.result.n);
 		assert.equal(1, result.ops.length);
@@ -34,11 +39,29 @@ var checkDocumentsQuery = function(db, query, callback){
 		}
 	});
 }
+//function encrypt 
+function encrypt(key, data) {
+	var cipher = crypto.createCipher('aes-256-cbc', key); //use crypto module to create cipher and decipher
+	var crypted = cipher.update(data, 'utf-8', 'hex'); //updates plain text to crypted text
+	crypted += cipher.final('hex'); //produces encrypted text
+
+	return crypted;
+}
+//function decrypt
+function decrypt(key, data) {
+	var decipher = crypto.createDecipher('aes-256-cbc', key);
+	var decrypted = decipher.update(data, 'hex', 'utf-8');
+	decrypted += decipher.final('utf-8');
+
+	return decrypted;
+}
 
 // Function to search for Data (For checking correct Login)
 var findDocumentsQuery = function(db, id, pw, callback){
   var collection = db.collection('accounts');
+  
   collection.findOne(id, function(err,account){
+	account.password = decrypt(key,account.password);//decrypt password in db first before comparing input password
     if (err) throw err;
 
     if (account == null){
@@ -50,6 +73,7 @@ var findDocumentsQuery = function(db, id, pw, callback){
 		}
   });
 }
+
 
 // middleware to get http requests in POST method and JSON type
 app.use(express.json());
@@ -129,6 +153,7 @@ app.post('/login', function(req,res){
 					if(userInfo == error){
 						readHtml('Login Failed!', res);
 					} else if(userInfo['student_id']){ //crawling잘 되었으면
+							
 							insertDocuments(db, userInfo, function(){
 								readHtml('Register and Login Success!', res);
 								db.close();
@@ -149,5 +174,5 @@ app.post('/login', function(req,res){
 });
 
 app.listen(3004, ()=>{
-	console.log("server started");
+	console.log("sever started!");
 });
