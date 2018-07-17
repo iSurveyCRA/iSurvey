@@ -161,6 +161,6 @@ app.post('/login', function(req,res){
 
 
 // listen to port number '300N' and host address '0.0.0.0'
-app.listen(3002, ()=>{
+app.listen(3004, ()=>{
 	console.log("server started");
 });
