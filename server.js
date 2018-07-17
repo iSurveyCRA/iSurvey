@@ -1,4 +1,4 @@
-// require necessary modules
+
 var express = require("express");
 var app = express();
 var path = require('path');
@@ -76,8 +76,6 @@ function readHtml(result, res){
 app.post('/login', function(req,res){
 	var username = req.body.username;
 	var password = req.body.password;
-	
-	var account = { "username" : username, "password" : password};
 
 	var idQuery = {};
 	idQuery['username'] = username
@@ -135,7 +133,6 @@ app.post('/login', function(req,res){
 								readHtml('Register and Login Success!', res);
 								db.close();
 							});
->>>>>>> master
 					} else {
 					 		readHtml('Hisnet Login Failed!!!', res);
 					 		db.close();
@@ -149,18 +146,8 @@ app.post('/login', function(req,res){
 
 
 	});
-		}
-			
-		else
-			readHtml("login sucefulio",res);
-
-
-	})
-	})
 });
 
-
-// listen to port number '300N' and host address '0.0.0.0'
 app.listen(3004, ()=>{
 	console.log("server started");
 });
