@@ -1,20 +1,27 @@
 {
-  "name": "demo",
-  "version": "1.0.0",
-  "description": "demo",
-  "main": "first_example.js",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "mongodb": "^2.2.35"
-  },
-  "devDependencies": {},
+  "name": "isurvey",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
   },
-  "keywords": [
-    "demo"
-  ],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "angular": "^1.7.2",
+    "async": "^2.6.1",
+    "child_process": "^1.0.2",
+    "cookie-parser": "~1.4.3",
+    "crypto": "^1.0.1",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "fs": "0.0.1-security",
+    "http-errors": "~1.6.2",
+    "mongoose": "^5.2.4",
+    "morgan": "~1.9.0",
+    "path": "^0.12.7",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.2"
+  }
 }

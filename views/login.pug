@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Log In
+    link(rel='stylesheet', href='/stylesheets/login.css')
+    script(src='javascripts/login.js')
+  body
+    div(class='limiter')
+      div(class='login-page')
+        div(class='form')
+          span(class='login-form-title')
+            b i-Survey
+            p
+              i(class='zmdi zmdi-chart zmdi-hc-lx')
+          form(action='/login' method='POST' class='login-form')
+                input(class='input' type='text' name='username' placeholder='hisnet ID')
+                input(class='input' type='password' name='password' placeholder='hisnet Password')
+                button(id='myBtn' class='dropbtn')
+                  b Login
+                button(id='myDropdown' class='buttonload')
+                  i(class='fa fa-spinner fa-spin') Loading
+                script(src='javascripts/loading.js')
+                div(class='text-center')
+                  p(class='message') Copyright 2018. CRA. all rights reserved
