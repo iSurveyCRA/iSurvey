@@ -57,12 +57,18 @@ exports.login = function(req, res, next){
 				userInfo.save(function(err) {
 					if (err) { res.render('result', {result:'Failed'}); }
 				});
-				res.render('result', {result:'Register'});
+				req.session.userId = results.user._id;
+				res.redirect('/');
 			});
 		} else {
 			ans = decrypt(key, results.user.password);
-			if (ans==req.body.password){ res.render('result', {result:'Login'}); }
-			else { res.render('result', {result:'Wrong Password'}); }
+			if (ans==req.body.password){
+				// 사용자의 session의 userId라는 필드에 현재 로그인한 사용자의 ObjectId를 저장한다.
+				req.session.userId = results.user._id;
+	 			res.redirect('/'); 
+			} else { 
+				res.render('result', {result:'Wrong Password'}); 
+			}
 		}
 	});
 };
