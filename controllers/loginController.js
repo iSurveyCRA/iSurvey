@@ -35,11 +35,17 @@ function decrypt(key, data) {
 exports.login = function(req, res, next){
 	async.parallel({
 		user: function(callback){
+			
 			User.findOne({ 'username': req.body.username }).exec(callback);
 		},
 	}, function(err, results){
 		if (err) { return next(err); }
-		if (results.user==null || results.user.name==null){
+
+		if(req.body.username == ''){
+			res.redirect('/loginpage');
+			
+		}
+		else if (results.user==null || results.user.name==null){
 			var spawn = require('child_process').spawn
 			var process = spawn('python3.5', ["python/seleniumLogin.py", req.body.username, req.body.password]);
 			process.stdout.on('data', function(data){
