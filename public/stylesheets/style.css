@@ -9,13 +9,13 @@ body {
 
 header {
 	width: 100%;
-	background-color: #9370db;
+	background-color: #B5D9F2;
 	height: 100px;
 }
 
 .topnav {
 	overflow: hidden;
-	background-color: #9370db;
+	background-color: #B5D9F2;
 	width: 1200px;
 	margin: auto;
 }
@@ -49,7 +49,7 @@ header {
 }
 
 .topnav a.active {
-	background-color: #dda0dd;
+	background-color: #a2c3d9;
 	color: white;
 	border-radius: 14px;
 }
