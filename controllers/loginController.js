@@ -57,7 +57,7 @@ exports.login = function(req, res, next){
 				userInfo.save(function(err) {
 					if (err) { res.render('result', {result:'Failed'}); }
 				});
-				req.session.userId = results.user._id;
+				req.session.userId = userInfo._id;
 				res.redirect('/');
 			});
 		} else {
@@ -71,4 +71,9 @@ exports.login = function(req, res, next){
 			}
 		}
 	});
+};
+
+exports.logout = function(req, res, next){
+	req.session.destroy();
+	res.redirect('/');
 };
