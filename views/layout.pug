@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+  body
+    header
+      div(class='topnav')
+        a(class='logo' href='/') i-Survey
+        a(class='active hover' href='/') Home
+        a(class='hover' href='#mypage') My Page
+        a(class='hover' href='#hakbu') 학부별 리스트
+        a(class='hover' href='/loginpage/logout') Log out
+        div(class='search-container')
+          form(action='/')
+            input(type='text' placeholder='Search...')
+            button(type='submit')
+              i(class='zmdi zmdi-search')
+
