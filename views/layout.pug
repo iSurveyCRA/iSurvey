@@ -12,15 +12,15 @@ html
         a(class='logo' href='/') 
           b i-Survey
         a(class='active hover' href='/') Home
-        a(class='hover' href='#mypage') My Page
+        a(class='hover' href='/mypage') My Page
         div(class='dropdown')
           button(class='dropbtn') 
             b 학부별 리스트
             i(class='fa fa-caret-down')
           div(class='dropdown-content')
-            a(href='#') GLS
-            a(href='#') 경영경제
-            a(href='#') 국제어문
+            a(href='/gls') GLS
+            a(href='/management') 경영경제
+            a(href='/international') 국제어문
             a(href='#') 법학부
             a(href='#') 상담복지
             a(href='#') 생명과학
@@ -35,4 +35,4 @@ html
             input(type='text' placeholder='Search...')
             button(type='submit')
               i(class='zmdi zmdi-search')
-
+  block content
