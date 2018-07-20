@@ -110,6 +110,7 @@ header {
 .dropdown-content a {
     float: none;
     color: black;
+    margin-top: 0;
     padding: 10px 16px;
     text-decoration: none;
     display: block;
