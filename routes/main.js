@@ -11,4 +11,32 @@ router.get('/', function(req, res, next){
 		res.render('layout');
 });
 
+router.get('/mypage', function(req, res, next){
+	if (!req.session.userId)
+                res.redirect('/loginpage');
+        else
+                res.render('mypage');
+});
+
+router.get('/gls', function(req, res, next){
+        if (!req.session.userId)
+                res.redirect('/loginpage');
+        else
+                res.render('gls');
+});
+
+router.get('/management', function(req, res, next){
+        if (!req.session.userId)
+                res.redirect('/loginpage');
+        else
+                res.render('management');
+});
+
+router.get('/international', function(req, res, next){
+        if (!req.session.userId)
+                res.redirect('/loginpage');
+        else
+                res.render('international');
+});
+
 module.exports = router;

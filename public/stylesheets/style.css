@@ -13,6 +13,39 @@ header {
 	height: 100px;
 }
 
+.row {  
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    width:1200px;
+    margin:auto;
+    background: #ddd;
+}
+
+
+.main {   
+    -ms-flex: 70%; /* IE10 */
+    flex: 70%;
+    background-color: white;
+    padding: 20px;
+    width:1000px;
+    margin:auto;
+}
+.board {
+    background-color: #ddd;
+    width:100%;
+    padding: 20px;
+    height: 250px;
+    border-radius:12px;
+}
+.fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+    height: 200px;
+}
+
 .topnav {
 	overflow: hidden;
 	background-color: #B5D9F2;
@@ -142,3 +175,10 @@ header {
 		border: 1px solid #ccc;  
 	}
 }
+
+@media screen and (max-width: 700px) {
+    .row {   
+        flex-direction: column;
+    }
+}
+
