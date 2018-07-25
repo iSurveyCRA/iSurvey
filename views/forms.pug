@@ -1,0 +1,24 @@
+extends layout
+block content
+ html
+  head
+    title Custom widget: Emotions Ratings, jQuery Survey Library Example
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |         
+    script(src='https://unpkg.com/jquery')
+    |         
+    script(src='https://surveyjs.azureedge.net/1.0.34/survey.jquery.js')
+    |         
+    link(href='https://surveyjs.azureedge.net/1.0.34/survey.css', type='text/css', rel='stylesheet')
+    |         
+    script(src='https://unpkg.com/emotion-ratings@2.0.1/dist/emotion-ratings.js')
+    |         
+    script(src='https://unpkg.com/surveyjs-widgets')
+  |     
+  body
+    #surveyElement
+    |         
+    #surveyResult
+    |         
+    script(type='text/javascript', src='javascripts/forms.js')
