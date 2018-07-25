@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    title Custom widget: Emotions Ratings, Angular2 Survey Library Example
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |         
+    script(src='https://unpkg.com/jquery')
+    |         
+    script(src='https://npmcdn.com/zone.js@0.8.17/dist/zone.js')
+    |         
+    script(src='https://npmcdn.com/core-js/client/shim.min.js')
+    |         
+    script(src='https://npmcdn.com/rxjs@5.0.0-beta.6/bundles/Rx.umd.js')
+    |         
+    script(src='https://npmcdn.com/@angular/core@2.0.0-rc.5/bundles/core.umd.js')
+    |         
+    script(src='https://npmcdn.com/@angular/common@2.0.0-rc.5/bundles/common.umd.js')
+    |         
+    script(src='https://npmcdn.com/@angular/compiler@2.0.0-rc.5/bundles/compiler.umd.js')
+    |         
+    script(src='https://npmcdn.com/@angular/platform-browser@2.0.0-rc.5/bundles/platform-browser.umd.js')
+    |         
+    script(src='https://npmcdn.com/@angular/platform-browser-dynamic@2.0.0-rc.5/bundles/platform-browser-dynamic.umd.js')
+    |         
+    script(src='https://surveyjs.azureedge.net/1.0.33/survey.angular.js')
+    |         
+    link(href='https://surveyjs.azureedge.net/1.0.33/survey.css', type='text/css', rel='stylesheet')
+    |         
+//    link(rel='stylesheet', href='../public/stylesheets/form.css')
+//    |         
+    script(src='https://unpkg.com/emotion-ratings@2.0.1/dist/emotion-ratings.js')
+    |         
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js')
+    |         
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css', rel='stylesheet')
+    |         
+    script(src='https://unpkg.com/surveyjs-widgets')
+  |     
+  body
+    ng-app
+    |         
+    #surveyResult
+    |         
+    script(type='text/javascript', src='../routes/form.js')
+

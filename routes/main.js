@@ -18,6 +18,13 @@ router.get('/mypage', function(req, res, next){
                 res.render('mypage');
 });
 
+router.get('/forms', function(req, res, next){
+	if(!req.session.userId)
+		res.redirect('/loginpage');
+	else
+		res.render('form');
+});
+
 router.get('/gls', function(req, res, next){
         if (!req.session.userId)
                 res.redirect('/loginpage');
