@@ -22,7 +22,7 @@ router.get('/forms', function(req, res, next){
 	if(!req.session.userId)
 		res.redirect('/loginpage');
 	else
-		res.render('form');
+		res.render('forms');
 });
 
 router.get('/gls', function(req, res, next){
@@ -45,5 +45,6 @@ router.get('/international', function(req, res, next){
         else
                 res.render('international');
 });
+
 
 module.exports = router;

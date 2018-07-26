@@ -1,3 +1,9 @@
+Survey
+	.StylesManager
+	.applyTheme("stone");
+
+
+
 var json = {
    questions: [
         {
@@ -6,14 +12,23 @@ var json = {
             title: "단답형:",
             placeHolder: "answer",
             isRequired: true
-            
+
         }, {
             name: "respondDate",
-            type: "text",
+            type: "multipletext",
             inputType: "date",
             title: "응답기간:",
-            isRequired: true
-        },  {
+            isRequired: true,
+	    items: [
+	     {
+	       name: "start",
+	       inputType: "date"
+	     },{
+	       name: "end",
+	       inputType: "date"
+	     }
+	  ] 
+        }, {
             name: "choose_single",
             type: "radiogroup",
             title: "단일선택",
@@ -40,7 +55,7 @@ var json = {
           type: "checkbox",
           title: "체크박스",
           isRequired: true,
-          colCount: 4,
+           colCount: 4,
           choices: [
             "컴퓨터구조",
             "이산수학",
@@ -86,6 +101,15 @@ var json = {
                     text: "Product is easy to use"
                 }
           ]
+	}, {
+            "type": "tagbox",
+            "isRequired": true,
+            "choicesByUrl": {
+                "url": "https://restcountries.eu/rest/v2/all"
+            },
+            "name": "countries",
+            "title": "Please select all countries you have been for the last 3 years."
+
         }, {
           name: "suggestion",
           type: "comment",
@@ -96,13 +120,6 @@ var json = {
             name: "만족도",
             title: "Please rate the movie you've just watched",
             choices: ["1", "2", "3", "4", "5"]
-        },{
-            type: "tagbox",
-            choicesByUrl: {
-                url: "https://restcountries.eu/rest/v1/all"
-            },
-            name: "countries",
-            title: "Please select all countries you have been for the last 3 years."
         }
     ]
 
@@ -114,27 +131,11 @@ survey
     .onComplete
     .add(function (result) {
         document
-            .querySelector('#surveyResult')
-            .innerHTML = "result: " + JSON.stringify(result.data);
+            .querySelector('#surveyResult');
+         //   .innerHTML = "result: " + JSON.stringify(result.data);
+	alert("result:" + JSON.stringify(result.data));	
     });
 
-function onAngularComponentInit() {
-    Survey
-        .SurveyNG
-        .render("surveyElement", {model: survey});
-}
-var HelloApp = ng
-    .core
-    .Component({selector: 'ng-app', template: '<div id="surveyContainer" class="survey-container contentcontainer codecontainer"><div id="surveyElement"></div></div> '})
-    .Class({
-        constructor: function () {},
-        ngOnInit: function () {
-            onAngularComponentInit();
-        }
-    });
-document.addEventListener('DOMContentLoaded', function () {
-    ng
-        .platformBrowserDynamic
-        .bootstrap(HelloApp);
-});
+$("#surveyElement").Survey({model: survey});
+
 
