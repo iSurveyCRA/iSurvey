@@ -22,15 +22,31 @@ editor
 	.addItem({
 	   name: "subject",
 	   iconName: "icon-default",
-	   title: "과목선택",
+	   title: "설문 category",
 	   isCopied: true,
+	   isrequired: true,
 	   json: {
-		"type": "dropdown",
-		choicesByUrl: {
-			optionsCaption: "Select a subject...",
-			url: "https://restcountries.eu/rest/v2/all" //과목크롤링리스트
-		}
-	}
+			type: "panel",
+			name:"panel_departmentBySubject",
+			//title:"Select the department...",
+			elements: [
+			{
+				type:"dropdown",
+				name:"department",
+				title:"Select the department..",
+			choicesByUrl: {
+				url: "https://restcountries.eu/rest/v2/all", //학부리스트
+			}
+			},{
+				type:"dropdown",
+				name:"subject",
+				title:"Select the subject..",
+			choicesByUrl: {
+				url:"https://restcountries.eu/rest/v2/region/{region}" //학부에 따른 과목크롤링리스트
+			}
+			}
+		]
+	    }
 });
 
 editor
@@ -38,7 +54,7 @@ editor
 	.addItem({
                 name: "registerDate",
                 iconName: "icon-default",
-                title: "설문기한설정",
+                title: "응답기한 설정",
                 isCopied: true,
                 json: {
                         "type": "multipletext",
@@ -53,3 +69,19 @@ editor
                         ]
                 }
           });
+
+//음성인식 기능 삭제
+editor.toolbox.removeItem("microphone");
+
+
+//set and save a survey
+//save 버튼 누르고 나서 보이도록 callback 설정하기
+/*editor.saveSurveyFunc = function(){
+	//save the survey JSON
+	var jsonEl = document.getElementById('surveyJSON');
+	jsonEl.value = editor.text;
+}
+
+editor.text = "{ pages: [{ name:\'page1\', questions: \'text\', name:\"q1\"}]}]}";
+
+*/
