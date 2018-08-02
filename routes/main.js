@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var form_controller = require('../controllers/formController');
 
 // GET Main page
 // 사용자에게 userId라는 Session Field가 존재하면 메인페이지를,
@@ -18,12 +19,16 @@ router.get('/mypage', function(req, res, next){
                 res.render('mypage');
 });
 
+
 router.get('/forms', function(req, res, next){
 	if(!req.session.userId)
 		res.redirect('/loginpage');
 	else
 		res.render('forms');
 });
+
+router.post('/saveForm', form_controller.saveTomongo);
+
 
 router.get('/gls', function(req, res, next){
         if (!req.session.userId)

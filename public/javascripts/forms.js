@@ -10,11 +10,48 @@ SurveyEditor
 var editorOptions = {
     questionTypes:["text", "checkbox","radiogroup","dropdown","rating","boolean","comment", "matrix", "matrixdropdown"],
     showPropertyGrid: false,
-    showJSONEditorTab:false,
-    isAutoSave: true
+//    showJSONEditorTab:false,
+//    isAutoSave: true
 };
 
+
 var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
+
+
+//만든 설문 참여할때
+
+//Survey.Survey.cssType = "bootstrap";
+//var surveyJSON = editor.text;
+//var surveyJSON = { questions: [ {type:"text", name: "question1" } ] };
+
+//function sendDataToServer(survey){
+//	alert("The results are:" + JSON.stringify(survey.data));
+//}
+//var survey = new Survey.Model(surveyJSON);
+//$("#surveyContainer").Survey({
+//    model: survey,
+//    onComplete: sendDataToServer
+//});
+
+//Setting this callback will make visible the "Save" button
+//저장버튼을 누르면 /saveForm에post방식으로 json보내기
+editor.saveSurveyFunc = function(saveNo, callback) {
+  alert("save!!");
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/saveForm', true);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.onload = function() {
+    var result = xhr.response ? JSON.parse(xhr.response) : null;
+    if (xhr.status === 200) {
+      callback(saveNo, true);
+    }
+  };
+  xhr.send(
+    JSON.stringify({ Json: editor.text})
+  );	
+};
+
 
 //기능 추가
 editor
@@ -28,7 +65,6 @@ editor
 	   json: {
 			type: "panel",
 			name:"panel_departmentBySubject",
-			//title:"Select the department...",
 			elements: [
 			{
 				type:"dropdown",
@@ -74,14 +110,3 @@ editor
 editor.toolbox.removeItem("microphone");
 
 
-//set and save a survey
-//save 버튼 누르고 나서 보이도록 callback 설정하기
-/*editor.saveSurveyFunc = function(){
-	//save the survey JSON
-	var jsonEl = document.getElementById('surveyJSON');
-	jsonEl.value = editor.text;
-}
-
-editor.text = "{ pages: [{ name:\'page1\', questions: \'text\', name:\"q1\"}]}]}";
-
-*/
