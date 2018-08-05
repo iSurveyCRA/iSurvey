@@ -10,7 +10,7 @@ SurveyEditor
 var editorOptions = {
     questionTypes:["text", "checkbox","radiogroup","dropdown","rating","boolean","comment", "matrix", "matrixdropdown"],
     showPropertyGrid: false,
-//    showJSONEditorTab:false,
+    showJSONEditorTab:false,
 //    isAutoSave: true
 };
 
@@ -30,7 +30,6 @@ var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
 //var survey = new Survey.Model(surveyJSON);
 //$("#surveyContainer").Survey({
 //    model: survey,
-//    onComplete: sendDataToServer
 //});
 
 //Setting this callback will make visible the "Save" button
@@ -47,8 +46,10 @@ editor.saveSurveyFunc = function(saveNo, callback) {
       callback(saveNo, true);
     }
   };
+//  var date = new Date();
   xhr.send(
     JSON.stringify({ Json: editor.text})
+//Time: date.toDateString()
   );	
 };
 
@@ -92,6 +93,7 @@ editor
                 iconName: "icon-default",
                 title: "응답기한 설정",
                 isCopied: true,
+		isrequired: true,
                 json: {
                         "type": "multipletext",
                         items: [
@@ -107,6 +109,6 @@ editor
           });
 
 //음성인식 기능 삭제
-editor.toolbox.removeItem("microphone");
+//editor.toolbox.removeItem("microphone");
 
 

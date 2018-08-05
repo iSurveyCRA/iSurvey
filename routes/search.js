@@ -1,7 +1,7 @@
 
 var express = require("express");
 var router  = express.Router();
-var Form = require("../models/forms");
+var Search = require("../models/search");
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://localhost:27017/iSurveyTest';
 mongoose.connect(mongoDB);
@@ -14,7 +14,7 @@ if(req.query.search) {
 		console.log(req.query.search);
 		//res.redirect('/');
 		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-		Form.find({title: regex}, function(err, result){
+		Search.find({title: regex}, function(err, result){
 		if(err){
 		console.log(err);
 		} else {
@@ -29,7 +29,7 @@ if(req.query.search) {
 		} else {
 			console.log(1)
  // Get all campgrounds from DB
- 		Form.find({}, function(err, result){
+ 		Search.find({}, function(err, result){
 			if(err){
 				console.log(err);
 			} 		else {
