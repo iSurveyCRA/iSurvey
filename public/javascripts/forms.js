@@ -46,10 +46,8 @@ editor.saveSurveyFunc = function(saveNo, callback) {
       callback(saveNo, true);
     }
   };
-//  var date = new Date();
   xhr.send(
     JSON.stringify({ Json: editor.text})
-//Time: date.toDateString()
   );	
 };
 
