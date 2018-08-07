@@ -1,12 +1,11 @@
 var Form = require('../models/forms');
-var Search = require('../models/search');
 var User = require('../models/user');
 
 var async = require('async');
 
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-var url = 'mongodb://localhost:27017/iSurveyTest';
+//var MongoClient = require('mongodb').MongoClient;
+//var assert = require('assert');
+//var url = 'mongodb://localhost:27017/iSurveyTest';
 
 
 exports.saveForm = function(req, res, next) {
@@ -20,7 +19,6 @@ exports.saveForm = function(req, res, next) {
         }, function(err, results){
 		if (err) { return next(err); }
 			var formData = results.user;
-			console.log(date.now);
 			var formInfo = new Form({
                         	username: formData.username,
                         	student_id: formData.student_id,
@@ -36,3 +34,4 @@ exports.saveForm = function(req, res, next) {
 	});
 	
 };
+

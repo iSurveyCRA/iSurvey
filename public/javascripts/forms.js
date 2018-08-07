@@ -18,20 +18,6 @@ var editorOptions = {
 var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
 
 
-//만든 설문 참여할때
-
-//Survey.Survey.cssType = "bootstrap";
-//var surveyJSON = editor.text;
-//var surveyJSON = { questions: [ {type:"text", name: "question1" } ] };
-
-//function sendDataToServer(survey){
-//	alert("The results are:" + JSON.stringify(survey.data));
-//}
-//var survey = new Survey.Model(surveyJSON);
-//$("#surveyContainer").Survey({
-//    model: survey,
-//});
-
 //Setting this callback will make visible the "Save" button
 //저장버튼을 누르면 /saveForm에post방식으로 json보내기
 editor.saveSurveyFunc = function(saveNo, callback) {
@@ -46,9 +32,11 @@ editor.saveSurveyFunc = function(saveNo, callback) {
       callback(saveNo, true);
     }
   };
+
   xhr.send(
     JSON.stringify({ Json: editor.text})
-  );	
+  );
+	
 };
 
 
@@ -107,6 +95,5 @@ editor
           });
 
 //음성인식 기능 삭제
-//editor.toolbox.removeItem("microphone");
-
+editor.toolbox.removeItem("microphone");
 

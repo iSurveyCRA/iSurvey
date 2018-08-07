@@ -1,8 +1,13 @@
-extends layout
-
+extends layout2
 block content
+
   h1 iSurvey
   p Welcome to iSurvey
   ul
     each val in isurveytest
-      li #{val.title}
+      li
+        a(href=val.url) #{val.data.title}
+        | (#{val.username})
+
+    else
+      li There are no title exists.

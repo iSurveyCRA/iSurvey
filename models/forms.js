@@ -10,4 +10,9 @@ var FormSchema = new Schema({
         data: {type: Object, required: true}
 });
 
+FormSchema.virtual('url').get(function(){
+//       return '/survey/' + this._id;
+	return '/survey';
+});
+
 module.exports = mongoose.model('Form', FormSchema);
