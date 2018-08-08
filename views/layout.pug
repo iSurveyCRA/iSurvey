@@ -9,12 +9,15 @@ html
 
   body
     header
+      div(class='userinfo')
+        span Welcome, #{userinfo.name} (#{userinfo.student_id})
       div(class='topnav')
         a(class='logo' href='/')
           img(src="./images/logo.png" alt="Crang2logo" width="60" height="60")
           b i-Survey
         a(class='active hover' href='/') Home
         a(class='hover' href='/mypage') My Page
+        a(class='hover' href='/forms') Make Form
         div(class='dropdown')
           button(class='dropbtn') 
             b 학부별 리스트
@@ -31,11 +34,10 @@ html
             a(href='#') 콘텐츠융합디자인
             a(href='#') 기계제어
             a(href='#') ICT창업학부
-        a(class='hover' href='/forms') 설문 만들기
         a(class='hover' href='/loginpage/logout') Log out
         div(class='search-container')
-          form(action='/')
-            input(type='text' placeholder='Search...')
+          form(action='/search' method = 'GET')
+            input(type='text' placeholder='Search...' name= 'search')
             button(type='submit')
               i(class='zmdi zmdi-search')
   block content

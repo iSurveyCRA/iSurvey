@@ -39,6 +39,11 @@ header {
     height: 250px;
     border-radius:12px;
 }
+.userinfo {
+	width:1200px;
+	height:10px;
+	text-align:right;
+}
 .fakeimg {
     background-color: #aaa;
     width: 100%;
