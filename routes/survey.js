@@ -4,15 +4,10 @@ var async = require('async');
 
 var Form = require('../models/forms');
 
-router.get('/', function(req,res,next){
+router.route('/')
+	.get(function(req, res, next){
 	res.render('survey');
-});
-
-//이거도 안됨
-//router.get('/:id', function(req,res){
-//	res.render('survey');
-//});
-
+	});
 /*
 router.get('/:id', function(req,res){
 	console.log(req.params.id);
