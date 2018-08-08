@@ -4,14 +4,15 @@ var async = require('async');
 
 var Form = require('../models/forms');
 
-router.route('/')
-	.get(function(req, res, next){
-	res.render('survey');
-	});
-/*
-router.get('/:id', function(req,res){
-	console.log(req.params.id);
+//router.route('/')
+//	.get(function(req, res, next){
+//	res.render('survey');
+//	});
 
+
+router.route('/:id')
+	.get(function(req, res, next){
+//	console.log(req.params.id);
 	 async.parallel({
                 survey: function(callback){
                         Form.findById(req.params.id).exec(callback);
@@ -24,14 +25,14 @@ router.get('/:id', function(req,res){
                         err.status = 404;
                         return next(err);
                 }
+		console.log("결과: ");
 		console.log(results.survey.data);
-//		res.render('survey', {forminfo: results.survey});
+		res.render('survey', {forminfo: results.survey});
         });
 
 //	res.render('survey');
  
 });
-*/
 
 
 module.exports = router;

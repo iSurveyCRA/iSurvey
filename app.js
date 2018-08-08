@@ -50,8 +50,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/loginpage', loginRouter);
 app.use('/', mainRouter);
 app.use('/search', searchRouter);
-//app.use('/survey', surveyRouter);
-app.use('/survey/:id', surveyRouter);
+app.use('/survey', surveyRouter);
+//app.use('/survey/:id', surveyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

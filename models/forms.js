@@ -11,8 +11,8 @@ var FormSchema = new Schema({
 });
 
 FormSchema.virtual('url').get(function(){
-       return '/survey/' + this._id;
-//	return '/survey';
+//       return '/survey?' + this._id;
+	return '/survey/' + this._id;
 });
 
 module.exports = mongoose.model('Form', FormSchema);
