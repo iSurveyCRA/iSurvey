@@ -5,14 +5,19 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    
 
   body
     header
+      div(class='userinfo')
+        span Welcome, #{userinfo.name} (#{userinfo.student_id})
       div(class='topnav')
-        a(class='logo' href='/') 
+        a(class='logo' href='/')
+          img(src="./images/logo.png" alt="Crang2logo" width="60" height="60")
           b i-Survey
         a(class='active hover' href='/') Home
         a(class='hover' href='/mypage') My Page
+        a(class='hover' href='/forms') Make Form
         div(class='dropdown')
           button(class='dropbtn') 
             b 학부별 리스트
@@ -31,8 +36,8 @@ html
             a(href='#') ICT창업학부
         a(class='hover' href='/loginpage/logout') Log out
         div(class='search-container')
-          form(action='/')
-            input(type='text' placeholder='Search...')
+          form(action='/search' method = 'GET')
+            input(type='text' placeholder='Search...' name= 'search')
             button(type='submit')
               i(class='zmdi zmdi-search')
   block content
