@@ -1,0 +1,24 @@
+extends layout2
+block content
+
+ doctype html
+ html
+  head
+    title Single line text - Text question, jQuery Survey Library Example
+    |         
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |         
+    script(src='https://unpkg.com/jquery')
+    |        
+    script(src='https://surveyjs.azureedge.net/1.0.36/survey.jquery.js')
+    |
+    link(href='https://surveyjs.azureedge.net/1.0.36/survey.css', type='text/css', rel='stylesheet')
+    |         
+  body
+    #surveyContainer
+    #surveyResult
+    #surveyElement
+    |
+    script(type='text/javascript').
+      var jsonData = '#{JSON.stringify(forminfo.data)}';
+    script(src='../javascripts/survey.js')

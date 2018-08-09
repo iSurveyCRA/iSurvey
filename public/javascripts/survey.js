@@ -1,3 +1,4 @@
+
 //만든 설문 참여할때
 
 console.log(jsonData.replace(/&quot;/g,"\""));
@@ -15,6 +16,15 @@ var surveyJSON = jsonData.replace(/&quot;/g,"\"");
 
 
 var survey = new Survey.Model(surveyJSON);
+
+survey
+    .onComplete
+    .add(function (result) {
+        document
+            .querySelector('#surveyResult')
+            .innerHTML = "result: " + JSON.stringify(result.data);
+    });
+
 $("#surveyContainer").Survey({
     model: survey,
 });
