@@ -1,15 +1,30 @@
+
 //만든 설문 참여할때
 
-Survey.Survey.cssType = "winter";
-var surveyJSON = { questions: [ {type:"text", name: "question1" } ] };
-//var surveyJSON = forminfo.data; 여기에 data가져오기
+console.log(jsonData.replace(/&quot;/g,"\""));
 
-function sendDataToServer(survey){
-      alert("The results are:" + JSON.stringify(survey.data));
-}
+//Survey.Survey.cssType = "winter";
+Survey
+    .StylesManager
+    .applyTheme("winter");
+
+var surveyJSON = jsonData.replace(/&quot;/g,"\"");
+
+//function sendDataToServer(survey){
+//      alert("The results are:" + JSON.stringify(survey.data));
+//}
+
 
 var survey = new Survey.Model(surveyJSON);
+
+survey
+    .onComplete
+    .add(function (result) {
+        document
+            .querySelector('#surveyResult')
+            .innerHTML = "result: " + JSON.stringify(result.data);
+    });
+
 $("#surveyContainer").Survey({
     model: survey,
 });
-
