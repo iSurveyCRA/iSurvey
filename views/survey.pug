@@ -19,4 +19,6 @@ block content
     #surveyResult
     #surveyElement
     |
-    script(type='text/javascript', src='../javascripts/survey.js')
+    script(type='text/javascript').
+      var jsonData = '#{JSON.stringify(forminfo.data)}';
+    script(src='../javascripts/survey.js')

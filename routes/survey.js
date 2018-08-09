@@ -9,7 +9,6 @@ var Form = require('../models/forms');
 //	res.render('survey');
 //	});
 
-
 router.route('/:id')
 	.get(function(req, res, next){
 //	console.log(req.params.id);
