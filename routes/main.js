@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var form_controller = require('../controllers/formController');
+var result_controller = require('../controllers/resultController');
 var session_controller = require('../controllers/sessionController');
 
 // GET Main page
@@ -16,5 +17,6 @@ router.get('/management', session_controller.management);
 router.get('/international', session_controller.international);
 
 router.post('/saveForm', form_controller.saveForm);
+router.post('/saveResult', result_controller.saveResult);
 
 module.exports = router;

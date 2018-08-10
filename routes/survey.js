@@ -4,11 +4,6 @@ var async = require('async');
 
 var Form = require('../models/forms');
 
-//router.route('/')
-//	.get(function(req, res, next){
-//	res.render('survey');
-//	});
-
 router.route('/:id')
 	.get(function(req, res, next){
 //	console.log(req.params.id);
@@ -29,7 +24,6 @@ router.route('/:id')
 		res.render('survey', {forminfo: results.survey});
         });
 
-//	res.render('survey');
  
 });
 
