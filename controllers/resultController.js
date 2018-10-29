@@ -13,23 +13,30 @@ exports.saveResult = function(req,res,next){
 		user: function(callback){
 			User.findOne({'_id':req.session.userId }).exec(callback);
 		},
+		result: function(callback){
+			Result.findOne({'student_id':req.body.student_id}).exec(callback);
+			
+		},
 	}, function(err, results){
-		if(err) { return next(err); }
-		var formData = results.user;
-		var resultInfo = new Result({
-			student_id: formData.student_id ,
-			user_department: formData.user_department ,
-			data: data,
-			//surveyid: url.split('/')[4]
-			_formid: url.split('/')[4]
-		});
-		
-
-		resultInfo.save(function(err) {
-			if(err) {res.render('result', {result: 'Failed'});
-			} else { console.log("Inserted one result to 'results' collection");}
+			if(err) { return next(err); }
+			var formData = results.user;
+			var resultInfo = new Result({
+				student_id: formData.student_id ,
+				user_department: formData.user_department ,
+				data: data,
+				_formid: url.split('/')[4]
 			});
-
-	});
-	
+			console.log(results.result.student_id);
+			//if(Result.findOne({'_formid':url.split('/')[4]}) != null){
+			//console.log(result.formId);
+			//	console.log("already respond");	
+				//res.render('result', {result: 'Already respond'});
+			//} else{
+				resultInfo.save(function(err) {
+					if(err) {res.render('result', {result: 'Failed'});
+					}else {
+				 	console.log("Inserted one result to 'results' collection");}
+				});
+		//	}
+		});
 }

@@ -33,9 +33,7 @@ survey.onComplete.add(function(sender,options){
             options.showDataSavingError(); //you may pass a text parameter to show your own text
         }
     };
-	console.log("sender.data: ");
 	console.log(sender.data);
-//	xhr.send(JSON.stringify(sender.data));
 	xhr.send(JSON.stringify({Json: sender.data, Url: document.location.href}));
 
  });
