@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Department = require('../models/departments');
 
 var async = require('async');
 
@@ -55,19 +56,22 @@ exports.login = function(req, res, next){
 					return;
 				}
 				userData.password = encrypt(key, userData.password);
-				var userInfo = new User({
-					username: userData.username,
-					password: userData.password,
-					name: userData.name,
-					grade: userData.grade,
-					student_id: userData.student_id,
-					user_department: userData.user_department
+				Department.findOne({ 'name':userData.user_department }, function(err, department){
+					var userInfo = new User({
+						username: userData.username,
+						password: userData.password,
+						name: userData.name,
+						grade: userData.grade,
+						student_id: userData.student_id,
+						user_department: department._id
+					});
+					userInfo.save(function(err) {
+						if (err) { res.render('result', {result:'Failed'}); }
+					});
+					req.session.userId = userInfo._id;
+					res.redirect('/');
+
 				});
-				userInfo.save(function(err) {
-					if (err) { res.render('result', {result:'Failed'}); }
-				});
-				req.session.userId = userInfo._id;
-				res.redirect('/');
 			});
 		} else {
 			ans = decrypt(key, results.user.password);
