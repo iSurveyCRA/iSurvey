@@ -3,10 +3,6 @@ var User = require('../models/user');
 
 var async = require('async');
 
-//var MongoClient = require('mongodb').MongoClient;
-//var assert = require('assert');
-//var url = 'mongodb://localhost:27017/iSurveyTest';
-
 
 exports.saveForm = function(req, res, next) {
 	//xhr.send에서 JSON.stringify로보내기 때문에 다시 parse해주어야 한다. 

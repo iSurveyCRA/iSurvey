@@ -11,7 +11,6 @@ var FormSchema = new Schema({
 });
 
 FormSchema.virtual('url').get(function(){
-//       return '/survey?' + this._id;
 	return '/survey/' + this._id;
 });
 
