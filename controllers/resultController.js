@@ -13,17 +13,20 @@ exports.saveResult = function(req,res,next){
 		user: function(callback){
 			User.findOne({'_id':req.session.userId }).exec(callback);
 		},
+		result: function(callback){
+			Result.findOne({'student_id':req.session.userId }).exec(callback);
+		}
 	}, function(err, results){
 		if(err) { return next(err); }
 		var formData = results.user;
 		var resultInfo = new Result({
-			student_id: formData.student_id ,
+			student_id: formData._id ,
 			user_department: formData.user_department ,
 			data: data,
 			//surveyid: url.split('/')[4]
 			_formid: url.split('/')[4]
 		});
-		
+		console.log(results.result.student_id);
 
 		resultInfo.save(function(err) {
 			if(err) {res.render('result', {result: 'Failed'});

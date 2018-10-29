@@ -1,4 +1,7 @@
 var User = require('../models/user');
+var Results = require('../models/results');
+var Department = require('../models/departments');
+var Form = require('../models/forms');
 
 var async = require('async');
 
@@ -14,8 +17,16 @@ exports.mypage = function(req, res, next){
 		user: function(callback){
 			User.findOne({ '_id':req.session.userId}).exec(callback);
 		},
+		result: function(callback){
+			Results.countDocuments({ 'student_id':req.session.userId }).exec(callback);
+		},
+		form: function(callback){
+			Form.countDocuments({ 'student_id':req.session.userId }).exec(callback);
+		},
 	}, function(err, results){
-		res.render('mypage', {userinfo:results.user});
+		Department.findOne({ '_id':results.user.user_department}, function(err, department){
+			res.render('mypage', {userinfo:results.user, department: department, num_res:results.result, num_form:results.form});
+		});
 	});
 };
 

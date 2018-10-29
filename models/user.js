@@ -8,7 +8,7 @@ var UserSchema = new Schema({
 	name: {type: String, required: true},
 	grade: {type: Number, required: true},
 	student_id: {type: Number, required: true},
-	user_department: {type: String, required: true},
+	user_department: Schema.Types.ObjectId,
 });
 
 UserSchema.virtual('url').get(function(){
