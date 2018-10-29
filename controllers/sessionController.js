@@ -1,4 +1,6 @@
 var User = require('../models/user');
+var Results = require('../models/results');
+var Department = require('../models/departments');
 
 var async = require('async');
 
@@ -15,7 +17,9 @@ exports.mypage = function(req, res, next){
 			User.findOne({ '_id':req.session.userId}).exec(callback);
 		},
 	}, function(err, results){
-		res.render('mypage', {userinfo:results.user});
+		Department.findOne({ '_id':results.user.user_department}, function(err, department){
+			res.render('mypage', {userinfo:results.user, department: department});
+		});
 	});
 };
 

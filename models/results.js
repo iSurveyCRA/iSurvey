@@ -3,11 +3,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ResultSchema = new Schema({
-        student_id: {type: Number, required: true},
-        user_department: {type: String, required: true},
+        student_id: Schema.Types.ObjectId,
+        user_department: Schema.Types.ObjectId,
         data: {type: Object, required: true},
 //	surveyid: {type: String, required: true}
-	_formid: Schema.Types.ObjectId
+	_formid: Schema.Types.ObjectId,
 });
 
 

@@ -17,7 +17,7 @@ exports.saveResult = function(req,res,next){
 		if(err) { return next(err); }
 		var formData = results.user;
 		var resultInfo = new Result({
-			student_id: formData.student_id ,
+			student_id: formData._id ,
 			user_department: formData.user_department ,
 			data: data,
 			//surveyid: url.split('/')[4]

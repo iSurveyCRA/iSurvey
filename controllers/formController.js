@@ -17,7 +17,7 @@ exports.saveForm = function(req, res, next) {
 			var formData = results.user;
 			var formInfo = new Form({
                         	username: formData.username,
-                        	student_id: formData.student_id,
+                        	student_id: formData._id,
                        		user_department: formData.user_department,
                         	data: data
                 	});
