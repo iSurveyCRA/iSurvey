@@ -14,7 +14,7 @@ exports.saveResult = function(req,res,next){
 			User.findOne({'_id':req.session.userId }).exec(callback);
 		},
 		result: function(callback){
-			Result.findOne({'student_id':req.body.student_id}).exec(callback);
+			Result.findOne({'student_id':req.session.userId}).exec(callback);
 			
 		},
 	}, function(err, results){
