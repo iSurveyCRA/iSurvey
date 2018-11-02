@@ -14,7 +14,7 @@ exports.saveResult = function(req,res,next){
 			User.findOne({'_id':req.session.userId }).exec(callback);
 		},
 		result: function(callback){
-			Result.findOne({'student_id':req.session.userId }).exec(callback);
+			Result.findOne({$and:[{'student_id':req.session.userId},{'_formid':url.split('/')[4]}]}).exec(callback);
 		}
 	}, function(err, results){
 		if(err) { return next(err); }
@@ -23,16 +23,17 @@ exports.saveResult = function(req,res,next){
 			student_id: formData._id ,
 			user_department: formData.user_department ,
 			data: data,
-			//surveyid: url.split('/')[4]
 			_formid: url.split('/')[4]
 		});
-		console.log(results.result.student_id);
-
+//		console.log(results.result);
+		if(results.result == null){
 		resultInfo.save(function(err) {
 			if(err) {res.render('result', {result: 'Failed'});
 			} else { console.log("Inserted one result to 'results' collection");}
 			});
-
+		}else{
+			console.log("Already respond");
+		}
 	});
 	
 }
