@@ -27,8 +27,9 @@ block content
             b 설문제목
           th
             b 작성일자
-        for item in form
+        each item in form
           tr
-            td= item.data.title
-            td= item.date
+            td
+              a(href=item.url) #{item.data.title}
+            td #{item.date}
 
