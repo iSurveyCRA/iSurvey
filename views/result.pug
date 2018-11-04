@@ -1,13 +1,23 @@
-doctype html
-html(lang='en')
-  head
-    meta(charset='utf-8')
-    title Sample Site
-    link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+extends layout2
+block content
 
-  body(style='padding-top:50px')
-    div(class='container')
-      div(class='jumbotron')
-        h1 #{result}
-        form(action='/')
-          input(type='submit' value='Go to Login')
+doctype html
+html
+  head
+    title Get Survey Result after sending results, jQuery Survey Library Example
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    script(src='https://unpkg.com/jquery')
+    script(src='https://surveyjs.azureedge.net/1.0.53/survey.jquery.js')
+    link(href='https://surveyjs.azureedge.net/1.0.53/survey.css', type='text/css', rel='stylesheet')
+    link(rel='stylesheet', href='./index.css')
+    script(src='https://cdn3.devexpress.com/jslib/17.2.5/js/dx.all.js')
+  body
+    #chartContainer
+    #surveyElement
+    #surveyResult
+
+    //Send jsonData to a javascript file
+    script(type='text/javascript')
+      var jsonData = '#{JSON.stringify(resultinfo.data)}';
+    script(src='../javascripts/result.js')
+

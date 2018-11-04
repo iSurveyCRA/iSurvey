@@ -1,0 +1,13 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Sample Site
+    link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+
+  body(style='padding-top:50px')
+    div(class='container')
+      div(class='jumbotron')
+        h1 #{result}
+        form(action='/')
+          input(type='submit' value='Go to Login')

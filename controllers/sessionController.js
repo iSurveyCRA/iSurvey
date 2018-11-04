@@ -25,8 +25,16 @@ exports.mypage = function(req, res, next){
 		},
 	}, function(err, results){
 		Department.findOne({ '_id':results.user.user_department}, function(err, department){
+
+//		Results.find({'_formid': .result._id}, function(err, result){
+
 			res.render('mypage', {userinfo:results.user, department: department, num_res:results.result.length, num_form:results.form.length, form:results.form});
-		});
+//console.log(results.result.username);
+
+//		});
+
+		});//
+
 	});
 };
 
@@ -82,5 +90,4 @@ exports.international = function(req, res, next){
                 res.render('international', {userinfo:results.user});
         });
 };
-
 
