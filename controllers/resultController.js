@@ -33,6 +33,7 @@ exports.saveResult = function(req,res,next){
 			});
 		}else{
 			console.log("Already respond");
+			res.render('result', {result:'Already respond'});
 		}
 	});
 	
