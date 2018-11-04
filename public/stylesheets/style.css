@@ -1,10 +1,13 @@
+
+
 * {
 	box-sizing: border-box;
 }
 
 body {
 	margin: 0;
-	font-family: sans-serif;
+	font-family: 'Poor Story', cursive;
+	font-family: 'PT Sans Caption', sans-serif;
 }
 
 header {
@@ -28,9 +31,11 @@ header {
     -ms-flex: 70%; /* IE10 */
     flex: 70%;
     background-color: white;
-    padding: 20px;
+    padding: 60px;
     width:1000px;
     margin:auto;
+    font-family: PT Sans Caption, Poor Story;
+
 }
 .board {
     background-color: #ddd;
@@ -38,11 +43,8 @@ header {
     padding: 20px;
     height: 250px;
     border-radius:12px;
-}
-.userinfo {
-	width:1200px;
-	height:10px;
-	text-align:right;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+    font-size: 17px;
 }
 .fakeimg {
     background-color: #aaa;
@@ -50,13 +52,18 @@ header {
     padding: 20px;
     height: 200px;
 }
-
+.userinfo{
+    width: 1200px;
+    height: 10px;
+    text-align: right;
+}
 .topnav {
 	overflow: hidden;
 	background-color: #B5D9F2;
 	width: 1200px;
 	margin: auto;
 }
+
 
 .topnav a {
 	float: left;
@@ -69,11 +76,19 @@ header {
 	text-decoration: none;
 	font-size: 17px;
         font-weight: bold;
+	font-family: PT Sans Caption;
 }	
+
+.topnav a.image {
+        margin-top:0px;
+}
+
 
 .topnav a.logo {
 	font-size: 40px;
 	margin-top: 10px;
+	text-shadow: 0px 1px #ffffff, 4px 4px 0px #ffffff;
+	text-align: center;
 }
 
 .search-container {
@@ -86,12 +101,14 @@ header {
 	color: black;
 	border-radius: 14px;
 }
-
-.topnav a.active {
+/*
+.topnav a.hover:visited{
 	background-color: #a2c3d9;
 	color: white;
 	border-radius: 14px;
 }
+여기 고치기 클릭하면 바뀌는 걸로. 
+*/
 
 .topnav .search-container {
 	float: right;
@@ -107,7 +124,7 @@ header {
 .topnav .search-container button {
 	float: right;
 	padding: 6px 10px;
-	margin-top: 8px;
+	margin-top: 10px;
 	margin-right: 16px;
 	background: #ddd;
 	font-size: 17px;
@@ -131,7 +148,7 @@ header {
 	color: black;
     	padding: 14px 16px;
     	background-color: inherit;
-    	font-family: inherit;
+    	font-family: Poor Story;
     	margin-top: 25px;
 	
 }
@@ -143,6 +160,7 @@ header {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    font-family: PT Sans Caption, Poor Story;
 }
 
 .dropdown-content a {
@@ -154,6 +172,8 @@ header {
     display: block;
     text-align: left;
     font-weight: normal;
+    font-family: PT Sans Caption, Poor Story;
+
 }
 
 .dropdown-content a:hover {
@@ -162,6 +182,49 @@ header {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.con_ul{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+	background-color:#fff;
+}
+
+.con_ul li{
+	padding:8px 16px;
+	border-bottom:1px solid #ddd;
+}
+
+.con_ul li:last-child{
+	border-bottom:none;
+}
+
+.container{
+	border-style: dotted;
+	border-radius: 15px;
+	background-color:#ddd;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    font-weight : lighter;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+hr.line{
+	width : 200px;
+	border-bottom:0px;
+	border-top:3px double #bbb;
+	text-align:left;
+	margin-left:0px;
+	margin-top:-10px;
 }
 
 @media screen and (max-width: 600px) {
