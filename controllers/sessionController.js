@@ -23,10 +23,15 @@ exports.mypage = function(req, res, next){
 		form: function(callback){
 			Form.countDocuments({ 'student_id':req.session.userId }).exec(callback);
 		},
+		how: function(callback){
+			Form.find({'student_id': req.session.userId}).exec(callback);
+		},
 	}, function(err, results){
 		Department.findOne({ '_id':results.user.user_department}, function(err, department){
-			res.render('mypage', {userinfo:results.user, department: department, num_res:results.result, num_form:results.form});
+		console.log(results.how.data);		
+	res.render('mypage', {userinfo:results.user,iSurvey: results.how.data.title, department: department, num_res:results.result, num_form:results.form});
 		});
+		
 	});
 };
 
