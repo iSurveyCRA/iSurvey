@@ -1,11 +1,11 @@
 //만든 설문 참여할때
 
-console.log(jsonData.replace(/&quot;/g,"\""));
-
 Survey
     .StylesManager
     .applyTheme("winter");
 
+//survey.pug에서 보내준 jsonData
+console.log(jsonData.replace(/&quot;/g,"\""));
 var surveyJSON = jsonData.replace(/&quot;/g,"\"");
 
 //function sendDataToServer(survey){
@@ -27,7 +27,7 @@ survey.onComplete.add(function(sender,options){
         if (xhr.status == 200) {
             options.showDataSavingSuccess(); //you may pass a text parameter to show your own text
             //Or you may clear all messages
-            //options.showDataSavingClear();
+//            options.showDataSavingClear();
         } else {
             //Error
             options.showDataSavingError(); //you may pass a text parameter to show your own text

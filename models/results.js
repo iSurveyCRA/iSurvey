@@ -9,5 +9,10 @@ var ResultSchema = new Schema({
 	_formid: Schema.Types.ObjectId
 });
 
+ResultSchema.virtual('url').get(function(){
+       // return '/result/' + this._id;
+	return '/result/' + this._formid;
+});
 
 module.exports = mongoose.model('Result', ResultSchema);
+

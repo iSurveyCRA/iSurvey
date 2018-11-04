@@ -17,6 +17,7 @@ var loginRouter = require('./routes/login');
 var mainRouter = require('./routes/main');
 var searchRouter = require('./routes/search');
 var surveyRouter = require('./routes/survey');
+//var resultRouter = require('./routes/result');
 
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -51,6 +52,7 @@ app.use('/loginpage', loginRouter);
 app.use('/', mainRouter);
 app.use('/search', searchRouter);
 app.use('/survey', surveyRouter);
+//app.use('/mypage/result', resultRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
