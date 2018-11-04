@@ -86,9 +86,9 @@ header {
 
 .topnav a.logo {
 	font-size: 40px;
-	margin-top: 10px;
 	text-shadow: 0px 1px #ffffff, 4px 4px 0px #ffffff;
-	text-align: center;
+	margin-top:-15px;
+        text-align: center;
 }
 
 .search-container {
@@ -211,10 +211,10 @@ table {
     width: 100%;
 }
 
-th, td {
+th,td {
     padding: 8px;
     text-align: left;
-    font-weight : lighter;
+    font-weight: lighter;
 }
 tr:nth-child(even) {background-color: #f2f2f2;}
 
