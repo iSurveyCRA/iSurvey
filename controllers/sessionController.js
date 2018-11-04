@@ -18,14 +18,14 @@ exports.mypage = function(req, res, next){
 			User.findOne({ '_id':req.session.userId}).exec(callback);
 		},
 		result: function(callback){
-			Results.countDocuments({ 'student_id':req.session.userId }).exec(callback);
+			Results.find({ 'student_id':req.session.userId }).exec(callback);
 		},
 		form: function(callback){
-			Form.countDocuments({ 'student_id':req.session.userId }).exec(callback);
+			Form.find({ 'student_id':req.session.userId }).exec(callback);
 		},
 	}, function(err, results){
 		Department.findOne({ '_id':results.user.user_department}, function(err, department){
-			res.render('mypage', {userinfo:results.user, department: department, num_res:results.result, num_form:results.form});
+			res.render('mypage', {userinfo:results.user, department: department, num_res:results.result.length, num_form:results.form.length, form:results.form});
 		});
 	});
 };
@@ -39,7 +39,7 @@ exports.layout = function(req, res, next){
                 if (!req.session.userId)
 			res.redirect('/loginpage');
 
-		else  res.render('layout', {userinfo:results.user});
+		else  res.render('board', {userinfo:results.user});
         });
 };
 
