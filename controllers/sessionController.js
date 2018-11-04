@@ -39,7 +39,7 @@ exports.layout = function(req, res, next){
                 if (!req.session.userId)
 			res.redirect('/loginpage');
 
-		else  res.render('layout', {userinfo:results.user});
+		else  res.render('board', {userinfo:results.user});
         });
 };
 
