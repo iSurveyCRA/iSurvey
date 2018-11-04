@@ -4,7 +4,8 @@ var async = require('async');
 
 var Result = require('../models/results');
 
-router.route('/mypage/:id')
+//router.route('/:id')
+router.route('/mypage/result/:id')
 	.get(function(req, res, next){
 	async.parallel({
 		result: function(callback){
