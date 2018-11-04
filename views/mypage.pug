@@ -19,7 +19,16 @@ block content
       br
       h2 내가 작성한 설문
       h5 Title description, Sep 2, 2017
-      div(class='fakeimg') Image
-      p Some text..
-      p Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+      hr(class='line')
+      table(class='table table-striped')
+        thead
+        tr
+          th
+            b 설문제목
+          th
+            b 작성일자
+        for item in form
+          tr
+            td= item.data.title
+            td= item.date
 
