@@ -1,15 +1,15 @@
 console.log(jsonData.replace(/&quot;/g,"\""));
 console.log(jsonResult.replace(/&quot;/g,"\""));
 
-var surveyResultsFromDB =jsonData.replace(/&quot;/g,"\"") ;//작성폼 json
+var surveyJSONFromDB =jsonData.replace(/&quot;/g,"\"") ;//작성폼 json
 var surveyResultsDataFromDB =jsonResult.replace(/&quot;/g,"\"") ;//답변 json
 
-function surveyResultModel(id, student_id, department, postedAt, results) {
+function surveyResultModel(id, student_id, department, results) {
   var self = this;
   self.id = id;
   self.student_id = student_id;
   self.department = department;
-  self.postedAt = postedAt;
+//  self.postedAt = postedAt;
   self.results = results;
   self.jsonResultsValue = null;
   self.getJsonResults = function () {
@@ -25,7 +25,7 @@ function surveyResultsModel(data) {
   if (data) {
     for (var i = 0; i < data.length; i++) {
       var item = data[i];
-      items.push(new surveyResultModel(i + 1, item.student_id, item.department, item.postedAt, item.results));
+      items.push(new surveyResultModel(i + 1, item.student_id, item.department, item.results));
     }
   }
   self.koItems = ko.observableArray(items);
@@ -38,7 +38,11 @@ function surveyResultsModel(data) {
 }
 ko.applyBindings(new surveyResultsModel(surveyResultsDataFromDB), document.getElementById("resultsTable"));
 
-Survey.Survey.cssType = "bootstrap";
+//Survey.Survey.cssType = "bootstrap";
+Survey
+    .StylesManager
+    .applyTheme("winter");
+
 var json = JSON.parse(surveyJSONFromDB);
 var survey = new Survey.Model(json);
 survey.mode = 'display';

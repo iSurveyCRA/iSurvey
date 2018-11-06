@@ -1,20 +1,21 @@
+script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js')
+script(type='text/javascript', src='https://surveyjs.azureedge.net/1.0.4/survey.ko.js')
+script(type='text/javascript', src='https://unpkg.com/jquery@3.3.1/dist/jquery.js')
 #resultsTable.well
   h3 Survey Results
   table.table
     thead
       tr
         th(scope='col') #
-        th(scope='col') Name
-        th(scope='col') Company
-        th(scope='col') Posted At
+        th(scope='col') StudentId
+        th(scope='col') Department
         th(scope='col')
     tbody
       // ko foreach: { data: koItems, as: 'item' }
       tr
         th(scope='row', data-bind='text:item.id')
-        td(data-bind='text:item.name')
-        td(data-bind='text:item.company')
-        td(data-bind='text:item.postedAt')
+        td(data-bind='text:item.student_id')
+        td(data-bind='text:item.department')
         td
           button(data-bind='click: $parent.showSurveyResult') Show Survey Results
       // /ko
