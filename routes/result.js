@@ -5,11 +5,11 @@ var async = require('async');
 var Result = require('../models/results');
 
 //router.route('/:id')
-router.route('/mypage/result/:id')
+router.route('/:id')
 	.get(function(req, res, next){
 	async.parallel({
 		result: function(callback){
-			Result.findById(req.params.id).exec(callback);
+			Result.find({ '_formid' : req.params.id}).exec(callback);
 		},
 	}, function(err, results){
 		if(err) {return next(err);}
@@ -23,3 +23,5 @@ router.route('/mypage/result/:id')
 		res.render('result', {resultinfo: results.result});
 	});
 });
+
+module.exports = router;
