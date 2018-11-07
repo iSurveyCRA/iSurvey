@@ -2,38 +2,37 @@ extends layout
 
 block content
   div(class='row')
-    div(class='main')
-      h2 나의 정보
-      div(class='board')
-        h5 * 이름: #{userinfo.name}
-        h5 * 학부: #{department.name}
-        h5 * 학년: #{userinfo.grade}
-        h5 * 내가 참여한 설문 개수: #{num_res}
-        h5 * 내가 작성한 설문 개수: #{num_form}
-      br
-      h2 내가 참여한 설문
-      h5 Title description, Dec 7, 2017
-      div(class='fakeimg') Image
-      p Some text...
-      p Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-      br
-      h2 내가 작성한 설문
-      h5 Title description, Sep 2, 2017
-      hr(class='line')
-      table(class='table table-striped')
-        thead
+  div(class='main')
+    h2 나의 정보
+    div(class='board')
+      h5 * 이름: #{userinfo.name}
+      h5 * 학부: #{department.name}
+      h5 * 학년: #{userinfo.grade}
+      h5 * 내가 참여한 설문 개수: #{num_res}
+      h5 * 내가 작성한 설문 개수: #{num_form}
+    br
+    h2 내가 참여한 설문
+    h5 Title description, Dec 7, 2017
+    div(class='fakeimg') Image
+    p Some text...
+    p Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+    br
+    h2 내가 작성한 설문
+    hr(class='line')
+    table(class='table table-striped')
+      thead
+      tr
+        th
+          b 설문제목
+        th
+          b 작성일자
+        th
+          b Result
+      each item in form
         tr
-          th
-            b 설문제목
-          th
-            b 작성일자
-          th
-            b Result
-        each item in form
-          tr
-            td
-              a(href=item.url) #{item.data.title}
-            td #{item.date}
-            td
-             -var url = "/result/"+item._id
-              a(class="hover" href=url) Result
+          td
+            a(href=item.url) #{item.data.title}
+          td #{item.date}
+          td
+           -var url = "/result/"+item._id
+            a(class="hover" href=url) Result
