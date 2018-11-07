@@ -1,45 +1,48 @@
-Survey
-    .StylesManager
-    .applyTheme("winter");
+console.log(jsonData.replace(/&quot;/g,"\""));
+console.log(jsonResult.replace(/&quot;/g,"\""));
 
-var surveySendResult = function(survey, options){
-	if(options.success){
-		survey.getResult('','langs');
-	}
-};
-var surveyGetResult = function (survey, options) {
-    if (options.success) {
-        showChart(options.dataList);
+var surveyResultsFromDB =jsonData.replace(/&quot;/g,"\"") ;//작성폼 json
+var surveyResultsDataFromDB =jsonResult.replace(/&quot;/g,"\"") ;//답변 json
+
+function surveyResultModel(id, student_id, department, postedAt, results) {
+  var self = this;
+  self.id = id;
+  self.student_id = student_id;
+  self.department = department;
+  self.postedAt = postedAt;
+  self.results = results;
+  self.jsonResultsValue = null;
+  self.getJsonResults = function () {
+    if (!self.jsonResultsValue && self.results) {
+      self.jsonResultsValue = JSON.parse(self.results);
     }
-};
-function showChart(chartDataSource) {
-    document
-        .getElementById("chartContainer")
-        .style
-        .height = "500px";
-    $("#chartContainer").dxPieChart({
-        dataSource: chartDataSource,
-        series: {
-            argumentField: 'name',
-            valueField: 'value'
-        }
-    });
+    return self.jsonResultsValue;
+  }
 }
+function surveyResultsModel(data) {
+  var self = this;
+  var items = [];
+  if (data) {
+    
+    for (var i = 0; i < data.length; i++) {
+      var item = data[i];
+      console.log(item);
+      items.push(new surveyResultModel(i + 1, item.student_id, item.department, item.postedAt, item.results));
+    }
+  }
+  self.koItems = ko.observableArray(items);
+  self.showSurveyResult = function (item) {
+    survey.clear();
+    survey.data = item.getJsonResults();
+    document.getElementById("surveyResultModalTitle").innerHTML = "Show result for: " + item.name;
+    $("#surveyResultModal").modal();
+  }
+}
+ko.applyBindings(new surveyResultsModel(surveyResultsDataFromDB), document.getElementById("resultsTable"));
 
-var json = {
-    surveyId: '5af48e08-a0a5-44a5-83f4-1c90e8e98de1',
-    surveyPostId: '3ce10f8b-2d8a-4ca2-a110-2994b9e697a1'
-};
-
-console.log(jsonData);
-//window.survey = new Survey.Model(json);
+//Survey.Survey.cssType = "bootstrap";
+var json = JSON.parse(surveyJSONFromDB);
 var survey = new Survey.Model(json);
-survey
-    .onComplete
-    .add(function (result) {
-        document
-            .querySelector('#surveyResult')
-            .innerHTML = "result: " + JSON.stringify(result.data);
-    });
+survey.mode = 'display';
+survey.render("surveyElement");
 
-$("#surveyElement").Survey({model: survey, onSendResult: surveySendResult, onGetResult: surveyGetResult});

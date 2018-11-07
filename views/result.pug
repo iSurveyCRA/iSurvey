@@ -1,23 +1,40 @@
-extends layout
-block content
+#resultsTable.well
+  
 
-doctype html
-html
-  head
-    title Get Survey Result after sending results, jQuery Survey Library Example
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    script(src='https://unpkg.com/jquery')
-    script(src='https://surveyjs.azureedge.net/1.0.53/survey.jquery.js')
-    link(href='https://surveyjs.azureedge.net/1.0.53/survey.css', type='text/css', rel='stylesheet')
-    link(rel='stylesheet', href='./index.css')
-    script(src='https://cdn3.devexpress.com/jslib/17.2.5/js/dx.all.js')
-  body
-    #chartContainer
-    #surveyElement
-    #surveyResult
+  h3 Survey Results
+  table.table
+    thead
+      tr
+        th(scope='col') #
+        th(scope='col') Student ID
+        th(scope='col') Department
+        th(scope='col') Posted At
+        th(scope='col')
+    tbody
+     // ko foreach: { data: koItems, as: 'item' }
+      tr
+        th(scope='row', data-bind='text:item.id')
+        td(data-bind='text:item.student_id')
+        td(data-bind='text:item.department')
+        td(data-bind='text:item.postedAt')
+        td
+          button(data-bind='click: $parent.showSurveyResult') Show Survey Results
+      // ko
+// Modal
+#surveyResultModal.modal.fade(role='dialog')
+  .modal-dialog(style='width:800px')
+    // Modal content
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal')
+        h3#surveyResultModalTitle.modal-title
+      .modal-body
+        #surveyElement
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Close
 
     //Send jsonData to a javascript file
-    script(type='text/javascript')
-      var jsonData = '#{JSON.stringify(resultinfo.data)}';
-    script(src='../javascripts/result.js')
-
+    script(type='text/javascript').
+      var jsonResult = '#{JSON.stringify(resultinfo)}';
+      var jsonData = '#{JSON.stringify(forminfo.data)}';
+    script(src='../javascripts/results.js')
