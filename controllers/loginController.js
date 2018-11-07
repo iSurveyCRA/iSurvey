@@ -78,6 +78,8 @@ exports.login = function(req, res, next){
 			if (ans==req.body.password){
 				// 사용자의 session의 userId라는 필드에 현재 로그인한 사용자의 ObjectId를 저장한다.
 				req.session.userId = results.user._id;
+				req.session.userName = results.user.name;
+				req.session.userNumber = results.user.student_id;
 	 			res.redirect('/'); 
 			} else { 
 				res.render('result', {result:'Wrong Password'}); 
