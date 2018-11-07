@@ -1,3 +1,5 @@
+//결과 chart로 나타내기(미완)
+
 var surveySendResult = function (s, options) {
     if (options.success) {
         s.getResult('a15eee7a-9418-4eb4-9671-2009c8ff6b24', 'langs');
