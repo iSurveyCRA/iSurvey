@@ -32,7 +32,7 @@ block content
         each item in form
           tr
             td
-              a(href=item.url) #{item.data.title}
+              a(href="/edit/"+item._id) #{item.data.title}
             td #{item.date}
             td
              -var url = "/result/"+item._id

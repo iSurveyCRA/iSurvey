@@ -7,11 +7,14 @@ var async = require('async');
 exports.saveForm = function(req, res, next) {
 	//xhr.send에서 JSON.stringify로보내기 때문에 다시 parse해주어야 한다. 
 	var data = JSON.parse(req.body.Json);
-
+console.log(data);
 	 async.parallel({
                 user: function(callback){
                         User.findOne({ '_id':req.session.userId}).exec(callback);
-                },
+                }
+//		form: function(callback){
+//			Form.findOne({'_id':url.split('/')[4]}).exec(callback);
+//		}
         }, function(err, results){
 		if (err) { return next(err); }
 			var formData = results.user;
@@ -21,12 +24,17 @@ exports.saveForm = function(req, res, next) {
                        		user_department: formData.user_department,
                         	data: data
                 	});
-
+//			if(results.form == null){
         		formInfo.save(function(err) {
                 		if(err) { res.render('result', {result: 'Failed'}); 
                 		} else { console.log("Inserted one account to 'forms' collection");}
         		});
-
+//			}else {
+//			formInfo.update(function(err){
+//				if(err){res.render('result', {result: 'Failed'});
+//				}else{ console.log("Update one account to 'forms' collection");}
+//			});
+//			}
 	});
 	
 };
