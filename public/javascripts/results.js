@@ -1,45 +1,43 @@
-Survey
-    .StylesManager
-    .applyTheme("winter");
+//응답자 별 결과보기
+var surveyJSONFromDB =jsonData.replace(/&quot;/g,"\"") ;//작성폼 json(object)
+var surveyResultsDataFromDB =jsonResult.replace(/&quot;/g,"\"") ;//답변 json(array)
+var obj = JSON.parse(surveyResultsDataFromDB);
 
-var surveySendResult = function(survey, options){
-	if(options.success){
-		survey.getResult('','langs');
-	}
-};
-var surveyGetResult = function (survey, options) {
-    if (options.success) {
-        showChart(options.dataList);
-    }
-};
-function showChart(chartDataSource) {
-    document
-        .getElementById("chartContainer")
-        .style
-        .height = "500px";
-    $("#chartContainer").dxPieChart({
-        dataSource: chartDataSource,
-        series: {
-            argumentField: 'name',
-            valueField: 'value'
-        }
-    });
+var survey = new Survey.Model(surveyJSONFromDB);
+
+function surveyResultModel(id, student_id, user_department, data) {
+  var self = this;
+  self.id = id;
+  self.student_id = student_id;
+  self.user_department = user_department;
+  self.data = data;
+  self.getJsonResults = function () {
+	return self.data;
+  }
 }
+function surveyResultsModel(data) {
+  var self = this;
+  var items = [];
+  if (data) {
+    for (var i = 0; i < Object.keys(data).length; i++) {
+      var item = data[i];
+	console.log(item.data);
+      items.push(new surveyResultModel(i + 1, item.student_id, item.user_department, item.data));
+  }
+}
+  self.koItems = ko.observableArray(items);
+  self.showSurveyResult = function (item) {
+//    survey.clear();
+    survey.data = item.getJsonResults();
+    document.getElementById("surveyResultModalTitle");
+    $("#surveyResultModal").modal();
+survey.mode = 'display';
+survey.render("surveyElement");
+  }
+}
+ko.applyBindings(new surveyResultsModel(obj), document.getElementById("resultsTable"));
 
-var json = {
-    surveyId: '5af48e08-a0a5-44a5-83f4-1c90e8e98de1',
-    surveyPostId: '3ce10f8b-2d8a-4ca2-a110-2994b9e697a1'
-};
-
-console.log(jsonData);
-//window.survey = new Survey.Model(json);
-var survey = new Survey.Model(json);
-survey
-    .onComplete
-    .add(function (result) {
-        document
-            .querySelector('#surveyResult')
-            .innerHTML = "result: " + JSON.stringify(result.data);
-    });
-
-$("#surveyElement").Survey({model: survey, onSendResult: surveySendResult, onGetResult: surveyGetResult});
+//Survey.Survey.cssType = "bootstrap";
+Survey
+	.StylesManager
+	.applyTheme("winter");

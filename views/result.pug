@@ -1,23 +1,45 @@
 extends layout2
 block content
 
-doctype html
-html
-  head
-    title Get Survey Result after sending results, jQuery Survey Library Example
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    script(src='https://unpkg.com/jquery')
-    script(src='https://surveyjs.azureedge.net/1.0.53/survey.jquery.js')
-    link(href='https://surveyjs.azureedge.net/1.0.53/survey.css', type='text/css', rel='stylesheet')
-    link(rel='stylesheet', href='./index.css')
-    script(src='https://cdn3.devexpress.com/jslib/17.2.5/js/dx.all.js')
-  body
-    #chartContainer
-    #surveyElement
-    #surveyResult
+ //Resource js files
+ script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js')
+ script(type='text/javascript', src='https://surveyjs.azureedge.net/1.0.4/survey.ko.js')
+ script(type='text/javascript', src='https://unpkg.com/jquery@3.3.1/dist/jquery.js')
+ script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+ script(type='text/css', src='https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css')
+ #resultsTable.well
+   h3 Survey Results
+   table.table
+     thead
+       tr
+         th(scope='col') #
+         th(scope='col') StudentId
+         th(scope='col') Department
+         th(scope='col')
+     tbody
+       // ko foreach: { data: koItems, as: 'item' }
+       tr
+         th(scope='row', data-bind='text:item.id')
+         td(data-bind='text:item.student_id')
+         td(data-bind='text:item.user_department')
+         td
+           button(data-bind='click: $parent.showSurveyResult') Show Survey Results
+       // /ko
+ // Modal
+ #surveyResultModal.modal.fade(role='dialog')
+   .modal-dialog(style='width:800px')
+     // Modal content
+     .modal-content
+       .modal-header
+         button.close(type='button', data-dismiss='modal') close
+         h3#surveyResultModalTitle.modal-title
+       .modal-body
+         #surveyElement
+       .modal-footer
+         button.btn.btn-default(type='button', data-dismiss='modal') Close
 
-    //Send jsonData to a javascript file
-    script(type='text/javascript')
-      var jsonData = '#{JSON.stringify(resultinfo.data)}';
-    script(src='../javascripts/result.js')
-
+     //Send jsonData to a javascript file
+     script(type='text/javascript').
+       var jsonResult = '#{JSON.stringify(resultinfo)}';
+       var jsonData = '#{JSON.stringify(forminfo.data)}';
+     script(src='../javascripts/results.js')
