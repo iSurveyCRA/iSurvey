@@ -5,11 +5,11 @@ var obj = JSON.parse(surveyResultsDataFromDB);
 
 var survey = new Survey.Model(surveyJSONFromDB);
 
-function surveyResultModel(id, student_id, user_department, data) {
+function surveyResultModel(id, student_id_num, user_department_str, data) {
   var self = this;
   self.id = id;
-  self.student_id = student_id;
-  self.user_department = user_department;
+  self.student_id_num = student_id_num;
+  self.user_department_str = user_department_str;
   self.data = data;
   self.getJsonResults = function () {
 	return self.data;
@@ -22,7 +22,7 @@ function surveyResultsModel(data) {
     for (var i = 0; i < Object.keys(data).length; i++) {
       var item = data[i];
 	console.log(item.data);
-      items.push(new surveyResultModel(i + 1, item.student_id, item.user_department, item.data));
+      items.push(new surveyResultModel(i + 1, item.student_id_num, item.user_department_str, item.data));
   }
 }
   self.koItems = ko.observableArray(items);

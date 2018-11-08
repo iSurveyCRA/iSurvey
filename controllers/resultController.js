@@ -1,5 +1,6 @@
 var Result = require('../models/results');
 var User = require('../models/user');
+var Department = require('../models/departments');
 
 var async = require('async');
 
@@ -18,13 +19,18 @@ exports.saveResult = function(req,res,next){
 		}
 	}, function(err, results){
 		if(err) { return next(err); }
+		Department.findOne({'_id':results.user.user_department},function(err,department){
 		var formData = results.user;
 		var resultInfo = new Result({
 			student_id: formData._id ,
 			user_department: formData.user_department ,
 			data: data,
-			_formid: url.split('/')[4]
+			_formid: url.split('/')[4],
+			student_id_num : formData.student_id,
+			user_department_str: department.name
 		});
+
+		
 //		console.log(results.result);
 		if(results.result == null){
 		resultInfo.save(function(err) {
@@ -36,5 +42,5 @@ exports.saveResult = function(req,res,next){
 			res.render('result', {result:'Already respond'});
 		}
 	});
-	
+	});
 }

@@ -29,6 +29,7 @@ exports.mypage = function(req, res, next){
 //		Results.find({'_formid': .result._id}, function(err, result){
 
 			res.render('mypage', {userinfo:results.user, department: department, num_res:results.result.length, num_form:results.form.length, form:results.form});
+		
 //console.log(results.result.username);
 
 //		});
