@@ -11,45 +11,15 @@ block content
           th 
             b 설문제목
           th
-            b 설문학부
+            b 학부
           th
             b 작성일자
-        tr
-          td Photogrammetry, a method of collecting information using aerial photography
-          td GLS
-          td 18-07-20
-        tr
-          td Cadastral surveyor, used to document land ownership,
-          td 전산전자공학부
-          td 18-07-21
-        tr
-          td Construction surveying, the locating of structures relative to a reference line
-          td 경영경제학부
-          td 18-07-22
-        tr
-          td Photogrammetry, a method of collecting information using aerial photography
-          td GLS
-          td 18-07-20
-        tr
-          td Cadastral surveyor, used to document land ownership,
-          td 전산전자공학부
-          td 18-07-21
-        tr
-          td Construction surveying, the locating of structures relative to a reference line
-          td 경영경제학부
-          td 18-07-22
-        tr
-          td Photogrammetry, a method of collecting information using aerial photography
-          td GLS
-          td 18-07-20
-        tr
-          td Cadastral surveyor, used to document land ownership,
-          td 전산전자공학부
-          td 18-07-21
-        tr
-          td Construction surveying, the locating of structures relative to a reference line
-          td 경영경제학부
-          td 18-07-22
+        each item in result
+          tr
+            td 
+              a(href=item.form.url) #{item.form.data.title}
+            td #{item.department.name}
+            td #{item.form.date}
       br
       br
       br
@@ -61,42 +31,14 @@ block content
           th
             b 설문제목
           th
-            b 설문학부
+            b 학부
           th
             b 작성일자         
-        tr
-          td Photogrammetry, a method of collecting information using aerial photography
-          td GLS
-          td 18-07-20
-        tr
-          td Cadastral surveyor, used to document land ownership,
-          td 전산전자공학부
-          td 18-07-21
-        tr
-          td Construction surveying, the locating of structures relative to a reference line
-          td 경영경제학부
-          td 18-07-22
-        tr
-          td Photogrammetry, a method of collecting information using aerial photography
-          td GLS
-          td 18-07-20
-        tr
-          td Cadastral surveyor, used to document land ownership,
-          td 전산전자공학부
-          td 18-07-21
-        tr
-          td Construction surveying, the locating of structures relative to a reference line
-          td 경영경제학부
-          td 18-07-22
-        tr
-          td Photogrammetry, a method of collecting information using aerial photography
-          td GLS
-          td 18-07-20
-        tr
-          td Cadastral surveyor, used to document land ownership,
-          td 전산전자공학부
-          td 18-07-21
-        tr
-          td Construction surveying, the locating of structures relative to a reference line
-          td 경영경제학부
-          td 18-07-22
+        - var i = 0;
+        while i < 5
+          tr
+            td
+              a(href=dep_result[i].url) #{dep_result[i].data.title}
+            td #{department.name}
+            td #{dep_result[i].date}
+          - i++;
