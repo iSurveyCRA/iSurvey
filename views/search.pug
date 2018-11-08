@@ -1,10 +1,22 @@
 extends layout2
-block content
 
-  ul
-    each val in isurveytest
-      li
-        a(href=val.url) #{val.data.title}
-        | (#{val.username})
-    else
-       No surveys match that query, please try again.
+block content
+    div(class='row')
+    div(class='main')
+      h3 최신 Survey
+      hr(class='line')
+      table(class='table table-striped')
+        thead
+        tr
+          th 
+            b 설문제목
+          th
+            b 학부
+          th
+            b 작성일자
+        each item in form
+          tr
+            td 
+              a(href=item.form.url) #{item.form.data.title}
+            td #{item.department.name}
+            td #{item.form.date}
