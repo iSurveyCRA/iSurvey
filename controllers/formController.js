@@ -12,7 +12,10 @@ exports.saveForm = function(req, res, next) {
 	async.parallel({
                 user: function(callback){
                         User.findOne({ '_id':req.session.userId}).exec(callback);
-                },
+                }
+//		form: function(callback){
+//			Form.findOne({'_id':url.split('/')[4]}).exec(callback);
+//		}
         }, function(err, results){
 		if (err) { return next(err); }
 		//if (id == 0){
@@ -23,10 +26,15 @@ exports.saveForm = function(req, res, next) {
                        		user_department: formData.user_department,
                         	data: data
                 	});
+<<<<<<< HEAD
+=======
+//			if(results.form == null){
+>>>>>>> fa1fe5384932328597a8c4e9e2b2f40f04265897
         		formInfo.save(function(err) {
                 		if(err) { res.render('result', {result: 'Failed'}); 
                 		} else { console.log("Inserted one account to 'forms' collection");}
         		});
+<<<<<<< HEAD
 		/*} else {
 			Form.findOneAndUpdate({'_id':id}, {data:data},{new:true}, function(err, form){
 				if(err) { res.render('result', {result: 'Failed'});
@@ -40,6 +48,14 @@ exports.saveForm = function(req, res, next) {
 	//		});
 	//		}
 
+=======
+//			}else {
+//			formInfo.update(function(err){
+//				if(err){res.render('result', {result: 'Failed'});
+//				}else{ console.log("Update one account to 'forms' collection");}
+//			});
+//			}
+>>>>>>> fa1fe5384932328597a8c4e9e2b2f40f04265897
 	});
 	
 };
