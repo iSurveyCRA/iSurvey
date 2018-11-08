@@ -22,6 +22,7 @@ var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
 //저장버튼을 누르면 /saveForm에post방식으로 json보내기
 editor.saveSurveyFunc = function(saveNo, callback) {
   alert("save!!");
+  var id = 0;
 
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/saveForm', true);
@@ -34,7 +35,7 @@ editor.saveSurveyFunc = function(saveNo, callback) {
   };
 
   xhr.send(
-    JSON.stringify({ Json: editor.text})
+    JSON.stringify({ Json: editor.text, ID: id})
   );
 	
 };

@@ -5,7 +5,7 @@ Survey
     .applyTheme("winter");
 
 //survey.pug에서 보내준 jsonData
-console.log(jsonData.replace(/&quot;/g,"\""));
+//console.log(jsonData.replace(/&quot;/g,"\""));
 var surveyJSON = jsonData.replace(/&quot;/g,"\"");
 
 //function sendDataToServer(survey){
