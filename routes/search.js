@@ -17,8 +17,9 @@ router.get('/', function(req,res){
 		Form.find({"data.title" :  regex }, function(err, result){
 			if(err){ console.log(err);
 			} else {
+			//data does not exist
 	  		 	if(result.length < 1) {
-		  		 console.log("No campgrounds match that query, please try again.");
+		  		 console.log("No surveys match that query, please try again.");
 				 }
 	   			console.log(result);
 
@@ -28,13 +29,13 @@ router.get('/', function(req,res){
  		});
 
 	} else {
-	console.log(1);
- // Get all campgrounds from DB
+ // Entered null in search
  		Form.find({}, function(err, result){
 			if(err){
 				console.log(err);
 			} else {
-	   			res.render("search", {isurveytest:result});
+				
+	   			res.render('null');
 			}
  		});
 	}
