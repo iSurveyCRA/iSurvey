@@ -20,8 +20,8 @@ block content
        // ko foreach: { data: koItems, as: 'item' }
        tr
          th(scope='row', data-bind='text:item.id')
-         td(data-bind='text:item.student_id')
-         td(data-bind='text:item.user_department')
+         td(data-bind='text:item.student_id_num')
+         td(data-bind='text:item.user_department_str')
          td
            button(data-bind='click: $parent.showSurveyResult') Show Survey Results
        // /ko
