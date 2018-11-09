@@ -3,16 +3,19 @@ extends layout
 block content
     div(class='row')
     div(class='main')
-      h2 나의 정보
+      h3 
+        b 나의 정보
+      hr(class='line')
       div(class='board')
-        h5 * 이름: #{userinfo.name}
-        h5 * 학부: #{department.name}
-        h5 * 학년: #{userinfo.grade}
-        h5 * 내가 참여한 설문 개수: #{num_res}
-        h5 * 내가 작성한 설문 개수: #{num_form}
+        p * 이름: #{userinfo.name}
+        p * 학부: #{department.name}
+        p * 학년: #{userinfo.grade}
+        p * 내가 참여한 설문 개수: #{num_res}
+        p * 내가 작성한 설문 개수: #{num_form}
       br
       br
-      h2 내가 참여한 설문
+      h3 
+        b 내가 참여한 설문
       hr(class='line')
       table(class='table table-striped')
         thead
@@ -34,7 +37,8 @@ block content
       br
       br
       br
-      h2 내가 작성한 설문
+      h3 
+        b 내가 작성한 설문
       hr(class='line')
       table(class='table table-striped')
         thead
