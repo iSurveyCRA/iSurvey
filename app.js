@@ -18,6 +18,7 @@ var mainRouter = require('./routes/main');
 var searchRouter = require('./routes/search');
 var surveyRouter = require('./routes/survey');
 var resultRouter = require('./routes/result');
+var deleteRouter = require('./routes/delete');
 var editRouter = require('./routes/edit');
 
 //handle mongo error
@@ -54,6 +55,7 @@ app.use('/', mainRouter);
 app.use('/search', searchRouter);
 app.use('/survey', surveyRouter);
 app.use('/result', resultRouter);
+app.use('/delete', deleteRouter);
 app.use('/edit', editRouter);
 
 // catch 404 and forward to error handler

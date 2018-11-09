@@ -14,7 +14,8 @@ var editorOptions = {
 
 var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
 
-//console.log(jsonData.replace(/&quot;/g,"\""));
+//pug에서 보내준 정보들
+console.log(jsonData.replace(/&quot;/g,"\""));
 var formJSON = jsonData.replace(/&quot;/g,"\"");
 editor.text = formJSON;
 
@@ -24,11 +25,11 @@ editor.saveSurveyFunc = function(saveNo, callback) {
   alert("수정되었습니다.");
 
   var xhr = new XMLHttpRequest();
-//  xhr.open('POST', '/modifyForm', true);
-  xhr.open('POST', '/saveForm', true);
+  xhr.open('POST', '/modifyForm', true);
+//  xhr.open('POST', '/saveForm', true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhr.onload = function() {
-    //var result = xhr.response ? JSON.parse(xhr.response) : null;
+//    var result = xhr.response ? JSON.parse(xhr.response) : null;
     if (xhr.status === 200) {
       callback(saveNo, true);
     } 

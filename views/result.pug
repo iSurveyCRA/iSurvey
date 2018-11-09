@@ -1,49 +1,52 @@
 extends layout2
 block content
 
- //Resource js files
- script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js')
- script(type='text/javascript', src='https://surveyjs.azureedge.net/1.0.4/survey.ko.js')
- script(type='text/javascript', src='https://unpkg.com/jquery@3.3.1/dist/jquery.js')
- script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
- script(type='text/css', src='https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css')
- #resultsTable.well
-   h3 Survey Results
-   table.table
-     thead
-       tr
-         th(scope='col') #
-         th(scope='col') StudentId
-         th(scope='col') Department
-         th(scope='col')
-     tbody
-       // ko foreach: { data: koItems, as: 'item' }
-       tr
-         th(scope='row', data-bind='text:item.id')
-         td(data-bind='text:item.student_id_num')
-         td(data-bind='text:item.user_department_str')
-         td
-           button(data-bind='click: $parent.showSurveyResult') Show Survey Results
-       // /ko
- // Modal
- #surveyResultModal.modal.fade(role='dialog')
-   .modal-dialog(style='width:800px')
-     // Modal content
-     .modal-content
-       .modal-header
-         button.close(type='button', data-dismiss='modal') close
-         h3#surveyResultModalTitle.modal-title
-       .modal-body
-         #surveyElement
-       .modal-footer
-         button.btn.btn-default(type='button', data-dismiss='modal') Close
+  //Resource js files
+  script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js')
+  script(type='text/javascript', src='https://surveyjs.azureedge.net/1.0.4/survey.ko.js')
+  script(type='text/javascript', src='https://unpkg.com/jquery@3.3.1/dist/jquery.js')
+  script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  script(type='text/css', src='https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css')
+  #resultsTable.well
+    div(class='row')
+      div(class='main')
+        h3 Survey Results
+        hr(class='line')
+        table(class='table table-striped')
+          thead
+            tr
+              th(scope='col') 
+                b #
+              th(scope='col') 
+                b StudentId
+              th(scope='col') 
+                b Department
+              th(scope='col')
+          tbody
+            // ko foreach: { data: koItems, as: 'item' }
+            tr
+              th(scope='row', data-bind='text:item.id')
+              td(data-bind='text:item.student_id_num')
+              td(data-bind='text:item.user_department_str')
+              td
+                button(data-bind='click: $parent.showSurveyResult') Show Survey Results
+            // /ko
+        // Modal
+        #surveyResultModal.modal.fade(role='dialog')
+          .modal-dialog(style='width:800px')
+            // Modal content
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal') close
+                h3#surveyResultModalTitle.modal-title
+              .modal-body
+                #surveyElement
+              .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
 
- #surveyResult
- #chartContainer
- #surveyElement
-
-     //Send jsonData to a javascript file
-     script(type='text/javascript').
-       var jsonResult = '#{JSON.stringify(resultinfo)}';
-       var jsonData = '#{JSON.stringify(forminfo.data)}';
-     script(src='../javascripts/results.js')
+            //Send jsonData to a javascript file
+            script(type='text/javascript').
+              var jsonResult = '#{JSON.stringify(resultinfo)}';
+              var jsonData = '#{JSON.stringify(forminfo.data)}';
+            script(src='../javascripts/results.js')
+>>>>>>> master

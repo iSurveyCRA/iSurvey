@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div(class='row')
+    div(class='row')
     div(class='main')
       h2 나의 정보
       div(class='board')
@@ -11,14 +11,8 @@ block content
         h5 * 내가 참여한 설문 개수: #{num_res}
         h5 * 내가 작성한 설문 개수: #{num_form}
       br
-      h2 내가 참여한 설문
-      h5 Title description, Dec 7, 2017
-      div(class='fakeimg') Image
-      p Some text...
-      p Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
       br
-      h2 내가 작성한 설문
-      h5 Title description, Sep 2, 2017
+      h2 내가 참여한 설문
       hr(class='line')
       table(class='table table-striped')
         thead
@@ -26,14 +20,42 @@ block content
           th
             b 설문제목
           th
+            b 학부
+          th
+            b 작성일자
+        each item in result
+          tr
+            td
+              a(href=item.form.url) #{item.form.data.title}
+            td #{item.department.name}
+            td #{item.form.date}
+
+      br
+      br
+      br
+      h2 내가 작성한 설문
+      hr(class='line')
+      table(class='table table-striped')
+        thead
+        tr
+          th
+            b 설문제목
+          th
+            b 학부
+          th
             b 작성일자
           th
             b Result
+          th
+            b Delete
         each item in form
           tr
             td
               a(href="/edit/"+item._id) #{item.data.title}
+            td #{department.name}
             td #{item.date}
             td
-             -var url = "/result/"+item._id
-              a(class="hover" href=url) Result
+              a(class="hover" href="/result/"+item._id) Result
+            td
+              a(class="hover" href="/delete/"+item._id) Delete
+

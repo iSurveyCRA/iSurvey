@@ -10,7 +10,11 @@ router.route('/:id')
          async.parallel({
                 survey: function(callback){
                         Form.findById(req.params.id).exec(callback);
+<<<<<<< HEAD
                         //Form.findOne({ '_id':req.params.id}).exec(callback);
+=======
+//                        Form.findOne({ '_id':req.params.id}).exec(callback);
+>>>>>>> master
                 },
         }, function(err, results){
                 if(err) { return next(err); }
@@ -29,3 +33,7 @@ router.route('/:id')
 
 
 module.exports = router;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master

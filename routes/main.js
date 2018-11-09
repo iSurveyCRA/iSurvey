@@ -17,7 +17,7 @@ router.get('/management', session_controller.management);
 router.get('/international', session_controller.international);
 
 router.post('/saveForm', form_controller.saveForm);
-router.post('/saveForm/:id', form_controller.modifyForm);
+router.post('/modifyForm', form_controller.modifyForm);
 router.post('/saveResult', result_controller.saveResult);
 //router.post('/modifyForm', form_controller.modifyForm);
 

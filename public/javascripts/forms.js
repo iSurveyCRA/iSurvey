@@ -40,7 +40,7 @@ editor.saveSurveyFunc = function(saveNo, callback) {
 	
 };
 
-
+/*
 //기능 추가
 editor
 	.toolbox
@@ -94,7 +94,7 @@ editor
                         ]
                 }
           });
-
+*/
 //음성인식 기능 삭제
 editor.toolbox.removeItem("microphone");
 
