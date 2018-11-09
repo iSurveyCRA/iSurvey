@@ -26,7 +26,7 @@ block content
         each item in result
           tr
             td
-              a(href=item.form.url) #{item.form.data.title}
+              a(class="w3-bar-item w3-button" href=item.form.url) #{item.form.data.title}
             td #{item.department.name}
             td #{item.form.date}
 
@@ -51,7 +51,7 @@ block content
         each item in form
           tr
             td
-              a(href="/edit/"+item._id) #{item.data.title}
+              a(class="w3-bar-item w3-button" href="/edit/"+item._id) #{item.data.title}
             td #{department.name}
             td #{item.date}
             td
