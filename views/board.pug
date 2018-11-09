@@ -35,7 +35,8 @@ block content
             th
               b 작성일자         
           - var i = 0;
-          while i < 5
+          - var max = length
+          while i < max
             tr
               td
                 a(href=dep_result[i].url) #{dep_result[i].data.title}
