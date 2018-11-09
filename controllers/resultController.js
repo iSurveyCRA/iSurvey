@@ -34,12 +34,12 @@ exports.saveResult = function(req,res,next){
 //		console.log(results.result);
 		if(results.result == null){
 		resultInfo.save(function(err) {
-			if(err) {res.render('result', {result: 'Failed'});
+			if(err) {res.render('error', {error: 'Failed'});
 			} else { console.log("Inserted one result to 'results' collection");}
 			});
 		}else{
 			console.log("Already respond");
-			res.render('result', {result:'Already respond'});
+			res.render('error', {error:'Already respond'});
 		}
 	});
 	});
