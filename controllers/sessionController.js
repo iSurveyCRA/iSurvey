@@ -125,6 +125,35 @@ exports.gls = function(req, res, next){
         });
 };
 
+exports.csee = function(req, res, next){
+        async.parallel({
+                user: function(callback){
+                        User.findOne({ '_id':req.session.userId}).exec(callback);
+                },
+		department: function(callback){
+			Department.findOne({'code':'0071'}).exec(callback);
+		},
+        }, function(err, results){
+                if (!req.session.userId){
+			res.redirect('/loginpage');
+		} else { 
+			async.parallel({
+				form: function(callback){
+					Form.find({'user_department':results.department._id}).sort({'date':'descending'}).exec(callback);
+				},
+			}, function(err, results2){
+				var result_form = [];
+				for(var i=0; i<results2.form.length; i++){
+					result_form.push(results2.form[i]);
+				}
+				res.render('csee', {userinfo:results.user, department:results.department, form:results2.form, length:results2.form.length});
+				
+			});
+		}	
+        });
+};
+
+
 exports.management = function(req, res, next){
         async.parallel({
                 user: function(callback){
