@@ -32,7 +32,6 @@ exports.mypage = function(req, res, next){
 			});
 		} else {
 			for(var i=0; i<results.result.length; i++){
-				console.log(i);
 				async.parallel({
 					form: function(callback){
 						Form.findOne({ '_id':results.result[i]._formid}).exec(callback);
