@@ -37,6 +37,16 @@ header {
     font-family: PT Sans Caption, Poor Story;
 
 }
+.center {
+    -ms-flex: 70%; /* IE10 */
+    flex: 70%;
+    background-color: white;
+    padding: 60px;
+    width:1000px;
+    margin:auto;
+    font-family: PT Sans Caption, Poor Story;
+    text-align : center;
+}
 .mainn {
     -ms-flex: 70%; /* IE10 */
     flex: 70%;
