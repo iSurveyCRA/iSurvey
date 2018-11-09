@@ -23,11 +23,9 @@ exports.saveForm = function(req, res, next) {
                 	});
 
         		formInfo.save(function(err) {
-                		if(err) { res.render('result', {result: 'Failed'}); 
-                		} else { console.log("Inserted one account to 'forms' collection");}
+                		if(err) { res.render('result', {result: 'Failed'});} 
+				console.log("Inserted one account to 'forms' collection");
+				res.redirect('..');	
         		});
-
-	});
-	
+});
 };
-

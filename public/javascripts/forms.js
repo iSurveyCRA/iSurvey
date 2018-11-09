@@ -21,7 +21,7 @@ var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
 //Setting this callback will make visible the "Save" button
 //저장버튼을 누르면 /saveForm에post방식으로 json보내기
 editor.saveSurveyFunc = function(saveNo, callback) {
-  alert("save!!");
+  //alert("저장되었습니다.");
 
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/saveForm', true);
