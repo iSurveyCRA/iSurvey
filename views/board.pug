@@ -15,11 +15,12 @@ block content
             th
               b 작성일자
           each item in result
+            - var date = new Date(item.form.date);
             tr
               td 
                 a(class="w3-bar-item w3-button" href=item.form.url) #{item.form.data.title}
               td #{item.department.name}
-              td #{item.form.date}
+              td #{date.toDateString()}
         br
         br
         br
@@ -37,9 +38,10 @@ block content
           - var i = 0;
           - var max = length
           while i < max
+            - var date = new Date(dep_result[i].date);
             tr
               td
                 a(class="w3-bar-item w3-button" href=dep_result[i].url) #{dep_result[i].data.title}
               td #{department.name}
-              td #{dep_result[i].date}
+              td #{date.toDateString()}
             - i++;
