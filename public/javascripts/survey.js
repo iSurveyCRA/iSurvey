@@ -28,10 +28,13 @@ survey.onComplete.add(function(sender,options){
             options.showDataSavingSuccess(); //you may pass a text parameter to show your own text
             //Or you may clear all messages
 //            options.showDataSavingClear();
-        } else {
+        } else if(xhr.status == 500) {
             //Error
-            options.showDataSavingError(); //you may pass a text parameter to show your own text
-        }
+		options.showDataSavingError("Already responded");
+//            options.showDataSavingError(); //you may pass a text parameter to show your own text
+        } else{
+	    options.showDataSavingError();
+	}
     };
 	console.log(sender.data);
 	xhr.send(JSON.stringify({Json: sender.data, Url: document.location.href}));
