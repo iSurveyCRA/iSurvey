@@ -13,6 +13,7 @@ router.get('/mypage', session_controller.mypage);
 router.get('/home', session_controller.layout);
 router.get('/forms', session_controller.forms);
 router.get('/gls', session_controller.gls);
+router.get('/csee', session_controller.csee);
 router.get('/management', session_controller.management);
 router.get('/international', session_controller.international);
 

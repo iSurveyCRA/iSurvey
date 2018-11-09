@@ -3,7 +3,7 @@ extends layout2
 block content
     div(class='row')
       div(class='main')
-        h3 Search Survey
+        h3 #{department.name}
         hr(class='line')
         table(class='table table-striped')
           thead
@@ -15,9 +15,9 @@ block content
             th
               b 작성일자
           each item in form
-            - var date = new Date(item.form.date);
+            - var date = new Date(item.date);
             tr
               td
-                a(href=item.form.url) #{item.form.data.title}
-              td #{item.department.name}
+                a(href=item.url) #{item.data.title}
+              td #{department.name}
               td #{date.toDateString()}

@@ -28,7 +28,7 @@ exports.mypage = function(req, res, next){
 		var flag = 0;
 		if(results.result.length == 0){
 			Department.findOne({ '_id':results.user.user_department}, function(err, department){
-				res.render('mypage', {userinfo:results.user, department: department, num_res:results.result.length, num_form:results.form.length, form:results.form, result:result_form});
+				res.render('mypage', {userinfo:results.user, department: department, num_res:results.result.length, num_form:results.form.length, form:results.form, result:result_form, length:0});
 			});
 		} else {
 			for(var i=0; i<results.result.length; i++){
@@ -46,7 +46,10 @@ exports.mypage = function(req, res, next){
 					result_form.push(results2);	
 					flag += 1;
 					if(flag == results.result.length){
-						res.render('mypage', {userinfo:results.user, department: results2.user_dep, num_res:results.result.length, num_form:results.form.length, form:results.form, result:result_form});
+						if(results.result.length < 5)
+							res.render('mypage', {userinfo:results.user, department: results2.user_dep, num_res:results.result.length, num_form:results.form.length, form:results.form, result:result_form, length:results.result.length});
+						else	
+							res.render('mypage', {userinfo:results.user, department: results2.user_dep, num_res:results.result.length, num_form:results.form.length, form:results.form, result:result_form, length:5});
 					}
 				});
 			}
@@ -66,32 +69,38 @@ exports.layout = function(req, res, next){
                 if (!req.session.userId){
 			res.redirect('/loginpage');
 		} else { 
-			async.parallel({
-				department_form: function(callback){
-					Form.find({'user_department':results.user.user_department}).sort({'date':'descending'}).exec(callback);
-				},
-				department: function(callback){
-					Department.findOne({'_id':results.user.user_department}).exec(callback);
-				},
-			}, function(err, results2){
-				var result_form = [];
-				var flag = 0;
-				for(var i=0; i<5; i++){
-					async.parallel({
-						department: function(callback){
-							Department.findOne({'_id':results.form[i].user_department}).exec(callback);
-						},
-					}, function(err, results3){
-						var temp = {form: results.form[flag], department: results3.department};
-						result_form.push(temp);
-						flag += 1;
-						if(flag == 5){
-							res.render('board', {userinfo:results.user, result:result_form, dep_result:results2.department_form, department:results2.department});
-						}
-					});
-				}
-				
-			});
+			if(results.form.length == 0){
+				Department.findOne({ '_id':results.user.user_department}, function(err, department){
+					res.render('board', {userinfo:results.user, department: department, dep_result:[], result:[], length:0});
+				});
+			} else {
+				async.parallel({
+					department_form: function(callback){
+						Form.find({'user_department':results.user.user_department}).sort({'date':'descending'}).exec(callback);
+					},
+					department: function(callback){
+						Department.findOne({'_id':results.user.user_department}).exec(callback);
+					},
+				}, function(err, results2){
+					var result_form = [];
+					var flag = 0;
+					for(var i=0; i<results.form.length; i++){
+						async.parallel({
+							department: function(callback){
+								Department.findOne({'_id':results.form[i].user_department}).exec(callback);
+							},
+						}, function(err, results3){
+							var temp = {form: results.form[flag], department: results3.department};
+							result_form.push(temp);
+							flag += 1;
+							if(flag == results.form.length){
+								res.render('board', {userinfo:results.user, result:result_form, dep_result:results2.department_form, department:results2.department, length:results.form.length});
+							}
+						});
+					}
+					
+				});
+			}
 		}	
         });
 };
@@ -115,6 +124,35 @@ exports.gls = function(req, res, next){
                 res.render('gls', {userinfo:results.user});
         });
 };
+
+exports.csee = function(req, res, next){
+        async.parallel({
+                user: function(callback){
+                        User.findOne({ '_id':req.session.userId}).exec(callback);
+                },
+		department: function(callback){
+			Department.findOne({'code':'0071'}).exec(callback);
+		},
+        }, function(err, results){
+                if (!req.session.userId){
+			res.redirect('/loginpage');
+		} else { 
+			async.parallel({
+				form: function(callback){
+					Form.find({'user_department':results.department._id}).sort({'date':'descending'}).exec(callback);
+				},
+			}, function(err, results2){
+				var result_form = [];
+				for(var i=0; i<results2.form.length; i++){
+					result_form.push(results2.form[i]);
+				}
+				res.render('csee', {userinfo:results.user, department:results.department, form:results2.form, length:results2.form.length});
+				
+			});
+		}	
+        });
+};
+
 
 exports.management = function(req, res, next){
         async.parallel({

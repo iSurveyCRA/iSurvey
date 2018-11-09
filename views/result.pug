@@ -22,6 +22,7 @@ block content
               th(scope='col') 
                 b Department
               th(scope='col')
+                b Show Result
           tbody
             // ko foreach: { data: koItems, as: 'item' }
             tr
@@ -49,4 +50,3 @@ block content
               var jsonResult = '#{JSON.stringify(resultinfo)}';
               var jsonData = '#{JSON.stringify(forminfo.data)}';
             script(src='../javascripts/results.js')
->>>>>>> master

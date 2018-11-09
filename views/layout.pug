@@ -3,6 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://www.w3schools.com/w3css/4/w3.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
     
@@ -10,7 +11,7 @@ html
   body
     header
       div(class='userinfo')
-        span Welcome, #{userinfo.name} (#{userinfo.student_id})
+       span Welcome, #{userinfo.name} (#{userinfo.student_id})
       div(class='topnav')
         a(class='logo' href='/')
           img(src="images/logo.png" alt="Crang2logo" width="60" height="60")
@@ -30,7 +31,7 @@ html
             a(href='#') 상담복지
             a(href='#') 생명과학
             a(href='#') 공간시스템
-            a(href='#') 전산전자
+            a(href='/csee') 전산전자
             a(href='#') 콘텐츠융합디자인
             a(href='#') 기계제어
             a(href='#') ICT창업학부
