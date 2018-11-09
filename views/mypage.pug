@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div(class='row')
+    div(class='row')
     div(class='main')
       h2 나의 정보
       div(class='board')
@@ -11,8 +11,8 @@ block content
         h5 * 내가 참여한 설문 개수: #{num_res}
         h5 * 내가 작성한 설문 개수: #{num_form}
       br
+      br
       h2 내가 참여한 설문
-      h5 Title description, Dec 7, 2017
       hr(class='line')
       table(class='table table-striped')
         thead
@@ -31,8 +31,9 @@ block content
             td #{item.form.date}
 
       br
+      br
+      br
       h2 내가 작성한 설문
-      h5 Title description, Sep 2, 2017
       hr(class='line')
       table(class='table table-striped')
         thead
