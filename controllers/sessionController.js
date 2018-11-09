@@ -71,7 +71,7 @@ exports.layout = function(req, res, next){
 		} else { 
 			if(results.form.length == 0){
 				Department.findOne({ '_id':results.user.user_department}, function(err, department){
-					res.render('board', {userinfo:results.user, department: department, dep_result:[], result:[]});
+					res.render('board', {userinfo:results.user, department: department, dep_result:[], result:[], length:0});
 				});
 			} else {
 				async.parallel({
@@ -84,7 +84,7 @@ exports.layout = function(req, res, next){
 				}, function(err, results2){
 					var result_form = [];
 					var flag = 0;
-					for(var i=0; i<5; i++){
+					for(var i=0; i<results.form.length; i++){
 						async.parallel({
 							department: function(callback){
 								Department.findOne({'_id':results.form[i].user_department}).exec(callback);
@@ -93,8 +93,8 @@ exports.layout = function(req, res, next){
 							var temp = {form: results.form[flag], department: results3.department};
 							result_form.push(temp);
 							flag += 1;
-							if(flag == 5){
-								res.render('board', {userinfo:results.user, result:result_form, dep_result:results2.department_form, department:results2.department});
+							if(flag == results.form.length){
+								res.render('board', {userinfo:results.user, result:result_form, dep_result:results2.department_form, department:results2.department, length:results.form.length});
 							}
 						});
 					}
