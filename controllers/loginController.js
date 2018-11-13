@@ -52,7 +52,7 @@ exports.login = function(req, res, next){
 				console.log(userData.error);
 				
 				if (typeof userData.password==='undefined') { 
-					res.render('result', {result:'Failed'});
+					res.render('error', {result:'Failed'});
 					return;
 				}
 				userData.password = encrypt(key, userData.password);
@@ -66,7 +66,7 @@ exports.login = function(req, res, next){
 						user_department: department._id
 					});
 					userInfo.save(function(err) {
-						if (err) { res.render('result', {result:'Failed'}); }
+						if (err) { res.render('error', {result:'Failed'}); }
 					});
 					req.session.userId = userInfo._id;
 					res.redirect('/');
@@ -82,7 +82,7 @@ exports.login = function(req, res, next){
 				req.session.userNumber = results.user.student_id;
 	 			res.redirect('/'); 
 			} else { 
-				res.render('result', {result:'Wrong Password'}); 
+				res.render('error', {result:'Wrong Password'}); 
 			}
 		}
 	});
