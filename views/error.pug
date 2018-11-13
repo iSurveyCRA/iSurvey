@@ -1,6 +1,13 @@
-extends layout
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Sample Site
+    link(rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  body(style='padding-top:50px')
+    div(class='container')
+      div(class='jumbotron')
+        h1 #{error}
+        form(action='/')
+          input(type='submit' value='Go to Login')
